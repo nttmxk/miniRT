@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op_vector.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jinoh <jinoh@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/30 15:23:15 by jinoh             #+#    #+#             */
+/*   Updated: 2022/07/30 15:23:16 by jinoh            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_math.h"
 
-inline double s2_vec(t_vec vec)
+inline double	s2_vec(t_vec vec)
 {
 	return (vec.x * vec.x + vec.y * vec.y + vec.z + vec.z);
 }
 
-inline double len_vec(t_vec vec)
+inline double	len_vec(t_vec vec)
 {
 	return (sqrt(s2_vec(vec)));
 }
@@ -75,4 +87,3 @@ t_vec	unit_vec(t_vec vec)
 	vec.z /= len;
 	return (vec);
 }
-

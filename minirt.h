@@ -1,26 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jinoh <jinoh@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/30 15:23:09 by jinoh             #+#    #+#             */
+/*   Updated: 2022/07/30 15:23:11 by jinoh            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINIRT_H
-#define MINIRT_H
+# define MINIRT_H
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <mlx.h>
 # include <math.h>
 
-# define	WIN_WIDTH	800
-# define	WIN_HEIGHT	600
-# define	ITER_MAX	100
-# define	A			0
-# define	D			2
-# define	F			3
-# define	C			8
-# define	LEFT		123
-# define	RIGHT		124
-# define	DOWN		125
-# define	UP			126
-# define	PLUS        24
-# define	MINUS       27
-# define	ZOOM_IN     5
-# define	ZOOM_OUT	4
+# define WIN_WIDTH	800
+# define WIN_HEIGHT	600
+# define ITER_MAX	100
+# define A			0
+# define D			2
+# define F			3
+# define C			8
+# define LEFT		123
+# define RIGHT		124
+# define DOWN		125
+# define UP			126
+# define PLUS        24
+# define MINUS       27
+# define ZOOM_IN     5
+# define ZOOM_OUT	4
 
 typedef struct s_data
 {
