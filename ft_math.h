@@ -15,8 +15,8 @@
 
 # include <math.h>
 
-typedef struct t_vec	t_point;
-typedef struct t_vec	t_color;
+typedef struct s_vec	t_point;
+typedef struct s_vec	t_color;
 
 typedef struct s_vec
 {
@@ -25,14 +25,14 @@ typedef struct s_vec
 	double	z;
 }	t_vec;
 
-inline double			s2_vec(t_vec vec);
-inline double			len_vec(t_vec vec);
-inline double			dot_vec(t_vec a, t_vec b);
+double			s2_vec(t_vec vec);
+double			len_vec(t_vec vec);
+double			dot_vec(t_vec a, t_vec b);
 t_vec			plus_vec(t_vec a, t_vec b);
 t_vec			minus_vec(t_vec a, t_vec b);
 t_vec			mul_vec(t_vec a, t_vec b);
-t_vec			mul_vecs(t_vec vec, double t);
-t_vec			divide_vecs(t_vec vec, double t);
+t_vec			mul_vec_s(t_vec vec, double t);
+t_vec			divide_vec_s(t_vec vec, double t);
 t_vec			cross_vec(t_vec a, t_vec b);
 t_vec			unit_vec(t_vec vec);
 

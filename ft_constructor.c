@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
+#include "minirt.h"
 
+/*
+ * 	idea
+ * 		[] convention(func name, estimated time, etc...)
+ * 		[]
+ */
 t_vec	make_vec(double x, double y, double z)
 {
 	t_vec	vec;
@@ -40,4 +45,13 @@ t_color	make_color(double x, double y, double z)
 	color.y = y;
 	color.z = z;
 	return (color);
+}
+
+t_ray	make_ray(t_point p, t_vec vec)
+{
+	t_ray	ray;
+
+	ray.orig = p;
+	ray.dir = unit_vec(vec);
+	return (ray);
 }
