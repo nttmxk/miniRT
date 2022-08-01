@@ -12,11 +12,6 @@
 
 #include "minirt.h"
 
-/*
- * 	idea
- * 		[] convention(func name, estimated time, etc...)
- * 		[]
- */
 t_vec	make_vec(double x, double y, double z)
 {
 	t_vec	vec;
@@ -53,5 +48,26 @@ t_ray	make_ray(t_point p, t_vec vec)
 
 	ray.orig = p;
 	ray.dir = unit_vec(vec);
+	return (ray);
+}
+
+t_ray	make_view(t_camera *cam, double u, double v)
+{
+	t_ray	ray;
+	t_vec	horizontal;
+	t_vec	vertical;
+
+	ray.orig = cam->orig;
+	/////////// just for test
+	horizontal = make_vec(WIN_WIDTH, 0, 0);
+	vertical = make_vec(0, WIN_HEIGHT, 0);
+	//////////
+	ray.dir = unit_vec(
+			minus_vec(
+				plus_vec(
+					plus_vec(
+						mul_vec_s(horizontal, u), mul_vec_s(vertical, v)),
+					cam->left),
+				cam->orig));
 	return (ray);
 }

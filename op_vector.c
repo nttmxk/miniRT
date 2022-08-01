@@ -14,7 +14,7 @@
 
 double	s2_vec(t_vec vec)
 {
-	return (vec.x * vec.x + vec.y * vec.y + vec.z + vec.z);
+	return (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 }
 
 double	len_vec(t_vec vec)
@@ -24,7 +24,7 @@ double	len_vec(t_vec vec)
 
 double	dot_vec(t_vec a, t_vec b)
 {
-	return (a.x * b.x + a.y + b.y + a.z + b.z);
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
 t_vec	plus_vec(t_vec a, t_vec b)

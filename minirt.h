@@ -22,26 +22,13 @@
 ////////// testing
 # define WIN_WIDTH	800
 # define WIN_HEIGHT	600
-# define ITER_MAX	100
-# define A			0
-# define D			2
-# define F			3
-# define C			8
-# define LEFT		123
-# define RIGHT		124
-# define DOWN		125
-# define UP			126
-# define PLUS        24
-# define MINUS       27
-# define ZOOM_IN     5
-# define ZOOM_OUT	4
-//////////
+////////////////////////
 typedef struct s_ray
 {
 	t_point	orig;
 	t_vec	dir;
 }	t_ray;
-///////// in subject
+
 typedef struct s_alight
 {
 	t_point	point;
@@ -52,6 +39,7 @@ typedef struct s_camera
 {
 	t_point	orig;
 	t_vec	dir;
+	t_point	left;
 	double	fov;
 }	t_camera;
 
@@ -91,17 +79,9 @@ typedef struct s_data
 	void	*win;
 	void	*img;
 	char	*addr;
-	int		type;
-	int		x;
-	int		y;
-	int		press_f;
-	int		color;
 	int		bpp;
 	int		line_length;
 	int		endian;
-	double	a;
-	double	b;
-	double	zoom_rate;
 }	t_data;
 
 /*
@@ -111,5 +91,14 @@ t_vec	make_vec(double x, double y, double z);
 t_point	make_point(double x, double y, double z);
 t_color	make_color(double x, double y, double z);
 t_ray	make_ray(t_point p, t_vec vec);
+t_ray	make_view(t_camera *cam, double u, double v);
+
+/*
+ * 	test.c
+ */
+t_point		ray_at(t_ray *ray, double t);
+t_camera	make_cam(void);
+void	 	print_vec(t_vec vec);
+double		hit_sphere(t_sphere *sp, t_ray *ray);
 
 #endif
