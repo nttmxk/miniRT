@@ -23,6 +23,16 @@
 # define WIN_WIDTH	800
 # define WIN_HEIGHT	600
 ////////////////////////
+typedef struct s_rec
+{
+	t_point	p;
+	t_vec	n;
+	double	tmin;
+	double	tmax;
+	double	t;
+	int		front_face; // set_face_normal but ignore it for now
+}	t_rec;
+
 typedef struct s_ray
 {
 	t_point	orig;
@@ -87,18 +97,19 @@ typedef struct s_data
 /*
  * 	ft_constructor.c
  */
-t_vec	make_vec(double x, double y, double z);
-t_point	make_point(double x, double y, double z);
-t_color	make_color(double x, double y, double z);
-t_ray	make_ray(t_point p, t_vec vec);
-t_ray	make_view(t_camera *cam, double u, double v);
+t_vec		make_vec(double x, double y, double z);
+t_point		make_point(double x, double y, double z);
+t_color		make_color(double x, double y, double z);
+t_ray		make_ray(t_point p, t_vec vec);
+t_ray		make_view(t_camera *cam, double u, double v);
 
 /*
  * 	test.c
  */
 t_point		ray_at(t_ray *ray, double t);
 t_camera	make_cam(void);
-void	 	print_vec(t_vec vec);
-double		hit_sphere(t_sphere *sp, t_ray *ray);
+void		print_vec(t_vec vec);
+int			hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec);
+int			color_sphere(t_sphere *sp, t_ray *ray);
 
 #endif

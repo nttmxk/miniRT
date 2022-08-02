@@ -1,5 +1,4 @@
 #include "minirt.h"
-#include "ft_math.h"
 
 void	data_init(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -8,6 +7,7 @@ int		press_key(int key, void *p);
 
 int main()
 {
+//	gcc -lmlx -framework OpenGL -framework AppKit *.c
 	t_data data;
 
 	data_init(&data);
@@ -21,13 +21,11 @@ int loop_func(t_data *data)
 	int x;
 	int y;
 	double u, v;
-	double ret;
 	t_sphere	sp;
 	t_ray		ray;
 	t_camera	cam;
 
 	sp.point = make_point(0, 0, -30);
-
 	sp.dia = 25;
 	cam = make_cam();
 	x = -1;
@@ -39,17 +37,7 @@ int loop_func(t_data *data)
 			u = (double)x / (WIN_WIDTH - 1);
 			v = (double)y / (WIN_HEIGHT - 1);
 			ray = make_view(&cam, u, v);
-			ret = hit_sphere(&sp, &ray);
-			if (!(ret >= -1 && ret <= -0.999))
-			{
-//				printf("Sol at [x: %f][y: %f][z: %f]\n",
-//					   ray.orig.x + ray.dir.x * ret,
-//					   ray.orig.y + ray.dir.y * ret,
-//					   ray.orig.z + ray.dir.z * ret);
-				my_mlx_pixel_put(data, x, y, 0xff0000);
-			}
-			else
-				my_mlx_pixel_put(data, x, y, 0x00ccff);
+			my_mlx_pixel_put(data, x, y, color_sphere(&sp, &ray));
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
