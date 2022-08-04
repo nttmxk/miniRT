@@ -50,6 +50,6 @@ t_vec		reflect(t_vec v, t_vec n);
  * parse.c
  */
 
-void		parse_mini_rt(char* filename);
+void		parse_mini_rt(char *filename);
 
 #endif

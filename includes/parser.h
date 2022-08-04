@@ -25,7 +25,6 @@ void		parse_sphere(char **splitted, t_objects *objects);
 void		parse_plane(char **splitted, t_objects *objects);
 void		parse_cylinder(char **splitted, t_objects *objects);
 
-
 /* validator */
 void		fov_check(double fov);
 void		dia_check(double dia);
