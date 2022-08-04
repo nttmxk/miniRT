@@ -14,17 +14,8 @@
 # define FT_MATH_H
 
 # include <math.h>
+# include "structures.h"
 # define SKYBLUE 0x00ccff
-
-typedef struct s_vec	t_point;
-typedef struct s_vec	t_color;
-
-typedef struct s_vec
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_vec;
 
 double			s2_vec(t_vec vec);
 double			len_vec(t_vec vec);

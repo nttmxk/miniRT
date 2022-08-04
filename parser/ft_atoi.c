@@ -12,6 +12,20 @@
 
 #include <stdlib.h>
 
+static void	if_end_exit(char c, char end)
+{
+	if (end == 'y')
+	{
+		if (c == '\0' || c == '\n')
+			exit(1);
+	}
+	if (end == 'n')
+	{
+		if (c != '\0' && c != '\n')
+			exit(1);
+	}
+}
+
 static int	check_space(const char *str)
 {
 	int	index;
@@ -35,15 +49,13 @@ int	ft_atoi(const char *str, int *ret)
 	if (str[index] == '-' || str[index] == '+')
 		index++;
 	result = 0;
-	if (str[index] == '\0')
-		exit(1);
+	if_end_exit(str[index], 'y');
 	while (str[index] >= '0' && str[index] <= '9')
 	{
 		result = result * 10 + str[index] - '0';
 		index++;
 	}
-	if (str[index] != '\0' && str[index] != '\n')
-		exit(1);
+	if_end_exit(str[index], 'n');
 	if (result > 9223372036854775807 && plma == 1)
 		return (0);
 	else if (result > 9223372036854775808ULL && plma == -1)
@@ -51,13 +63,29 @@ int	ft_atoi(const char *str, int *ret)
 	return ((int)result * plma);
 }
 
-double ft_atod(const char *str)
+static void	under_the_dot(const char *str, double *result, int *index)
+{
+	int	dot;
+
+	if (str[(*index)] == '.')
+	{
+		if_end_exit(str[(*index)], 'y');
+		dot = 1;
+		(*index)++;
+		while (str[(*index)] >= '0' && str[(*index)] <= '9')
+		{
+			dot *= 10;
+			(*result) = (*result) + (double)(str[(*index)] - '0') / dot;
+			(*index)++;
+		}
+	}
+}
+
+double	ft_atod(const char *str)
 {
 	double	result;
 	double	plma;
 	int		index;
-	int		dot;
-	int		i;
 
 	index = check_space(str);
 	plma = 1;
@@ -65,28 +93,14 @@ double ft_atod(const char *str)
 		plma = -1;
 	if (str[index] == '-' || str[index] == '+')
 		index++;
-	if (str[index] == '\0')
-		exit(1);
+	if_end_exit(str[index], 'y');
 	result = 0;
 	while (str[index] >= '0' && str[index] <= '9')
 	{
 		result = result * 10 + str[index] - '0';
 		index++;
 	}
-	if (str[index] == '.')
-	{
-		if (str[index] == '\0' || str[index] == '\n')
-			exit(1);
-		dot = 1;
-		index++;
-		while (str[index] >= '0' && str[index] <= '9')
-		{
-			dot *= 10;
-			result = result + (double)(str[index] - '0') / dot;
-			index++;
-		}
-	}
-	if (str[index] != '\0' && str[index] != '\n')
-		exit(1);
+	under_the_dot(str, &result, &index);
+	if_end_exit(str[index], 'n');
 	return (result * plma);
 }
