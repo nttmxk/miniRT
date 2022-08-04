@@ -25,7 +25,7 @@
 ////////////////////////
 typedef int t_object_type;
 # define SP 0
-# define LIGHT 1
+# define LIGHT 1 // for temp
 
 typedef int t_bool;
 # define TRUE 1
@@ -54,18 +54,6 @@ typedef struct s_ray
 	t_point	orig;
 	t_vec	dir;
 }	t_ray;
-typedef struct s_scene
-{
-	t_rec		*rec;
-	t_ray		*ray;
-	t_object	*light;
-	t_color		ambient;
-}	t_scene;
-typedef struct s_alight
-{
-	t_point	point;
-	double	ratio;
-}	t_alight;
 
 typedef struct s_camera
 {
@@ -81,6 +69,16 @@ typedef struct s_light
 	double	bright;
 	t_color	color; // unused in mandatory part
 }	t_light;
+
+typedef struct s_scene
+{
+	t_rec		rec;
+	t_ray		ray;
+	t_object	*light;
+	t_camera	camera;
+	t_color		ambient;
+	int 		mask;
+}	t_scene;
 
 typedef struct s_sphere
 {
@@ -124,9 +122,9 @@ typedef struct s_ambient
 }	t_ambient;
 
 typedef struct s_scenes {
-	t_ambient ambient;
-	t_camera camera;
-	t_light light;
+	t_ambient	ambient;
+	t_camera	camera;
+	t_light		light;
 	int mask;
 } t_scenes;
 
@@ -159,6 +157,7 @@ int			hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec);
 int			color_sphere(t_sphere *sp, t_ray *ray);
 int			lighting(t_scene *scene);
 t_color		point_light_get(t_scene *scene, t_light *light);
+t_vec		reflect(t_vec v, t_vec n);
 
 /*
  * parse.c

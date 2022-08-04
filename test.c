@@ -111,22 +111,43 @@ int	lighting(t_scene *scene)
 		lights = lights->next;
 	}
 	light_color = plus_vec(light_color, scene->ambient);
-//	return (get_color(
-//			min_vec(
-//				mul_vec(light_color, scene->rec.albedo),
-//				make_color(1, 1, 1))
-//						));
-	return (0);
+	return (get_color(
+			min_vec(
+				mul_vec(light_color, scene->rec.albedo),
+				make_color(1, 1, 1))
+						));
 }
 
 t_color	point_light_get(t_scene *scene, t_light *light)
 {
 	t_color	diffuse;
 	t_vec	light_dir;
-	double	kd = 0;
+	double	kd;
+	t_color	specular;
+	t_vec	view_dir;
+	t_vec	reflect_dir;
+	double	spec;
+	double	ksn;
+	double	ks;
 
-//	light_dir = unit_vec(minus_vec(light->point, scene->rec.p));
-//	kd = fmax(dot_vec(scene->rec.n, light_dir), 0.0);
+	light_dir = unit_vec(minus_vec(light->point, scene->rec.p));
+	kd = fmax(dot_vec(scene->rec.n, light_dir), 0.0);
 	diffuse = mul_vec_s(light->color, kd);
-	return (diffuse);
+
+	view_dir = unit_vec(mul_vec_s(scene->ray.dir, -1));
+	reflect_dir = reflect(light_dir, scene->rec.n);
+	ksn = 30;
+	ks = 0.8;
+	spec = pow(fmax(dot_vec(view_dir, reflect_dir), 0.0), ksn);
+	specular = mul_vec_s(mul_vec_s(light->color, ks), spec);
+
+	return (plus_vec(diffuse, specular));
+}
+
+t_vec	reflect(t_vec v, t_vec n)
+{
+	return (plus_vec(
+			mul_vec_s(v, -1),
+			mul_vec_s(n,2 * dot_vec(v, n))
+			));
 }
