@@ -1,4 +1,5 @@
 #include "minirt.h"
+#include "mlx.h"
 
 void	data_init(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -7,7 +8,7 @@ int		press_key(int key, void *p);
 
 int main()
 {
-//	gcc -lmlx -framework OpenGL -framework AppKit *.c
+//	cc -lmlx -framework OpenGL -framework AppKit *.c
 	t_data data;
 
 	data_init(&data);

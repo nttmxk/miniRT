@@ -87,3 +87,14 @@ t_vec	unit_vec(t_vec vec)
 	vec.z /= len;
 	return (vec);
 }
+
+t_vec	min_vec(t_vec a, t_vec b)
+{
+	if (a.x > b.x)
+		a.x = b.x;
+	if (a.y > b.y)
+		a.y = b.y;
+	if (a.z > b.z)
+		a.z = b.z;
+	return (a);
+}

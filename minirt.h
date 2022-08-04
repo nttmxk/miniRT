@@ -15,14 +15,24 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-# include <mlx.h>
 # include <math.h>
+# include "mlx.h"
 # include "ft_math.h"
 
 ////////// testing
 # define WIN_WIDTH	800
 # define WIN_HEIGHT	600
 ////////////////////////
+typedef int t_object_type;
+# define SP 0
+# define LIGHT 1
+typedef struct s_object
+{
+	t_object_type	type;
+	void			*element;
+	void			*next;
+}	t_object;
+
 typedef struct s_rec
 {
 	t_point	p;
@@ -31,6 +41,7 @@ typedef struct s_rec
 	double	tmax;
 	double	t;
 	int		front_face; // set_face_normal but ignore it for now
+	t_color	albedo;
 }	t_rec;
 
 typedef struct s_ray
@@ -38,7 +49,13 @@ typedef struct s_ray
 	t_point	orig;
 	t_vec	dir;
 }	t_ray;
-
+typedef struct s_scene
+{
+	t_rec		*rec;
+	t_ray		*ray;
+	t_object	*light;
+	t_color		ambient;
+}	t_scene;
 typedef struct s_alight
 {
 	t_point	point;
@@ -111,5 +128,7 @@ t_camera	make_cam(void);
 void		print_vec(t_vec vec);
 int			hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec);
 int			color_sphere(t_sphere *sp, t_ray *ray);
+int			lighting(t_scene *scene);
+t_color		point_light_get(t_scene *scene, t_light *light);
 
 #endif

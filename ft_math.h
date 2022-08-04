@@ -36,6 +36,7 @@ t_vec			mul_vec_s(t_vec vec, double t);
 t_vec			divide_vec_s(t_vec vec, double t);
 t_vec			cross_vec(t_vec a, t_vec b);
 t_vec			unit_vec(t_vec vec);
+t_vec			min_vec(t_vec a, t_vec b);
 
 int				get_color(t_color c);
 
