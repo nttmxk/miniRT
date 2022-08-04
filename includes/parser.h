@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hakim <hakim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/05 05:32:05 by hakim             #+#    #+#             */
+/*   Updated: 2022/08/05 05:32:14 by hakim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSER_H
 # define PARSER_H
 
@@ -17,7 +29,7 @@ void		parse_cylinder(char **splitted, t_objects *objects);
 /* validator */
 void		fov_check(double fov);
 void		dia_check(double dia);
-t_bool		check_splitted_length(char **splitted, int length);
+t_bool		check_length(char **splitted, int length);
 void		ratio_check(double ratio);
 void		color_check(t_color color);
 void		normalized_check(t_vec normal);
