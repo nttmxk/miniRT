@@ -6,11 +6,15 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		loop_func(t_data *data);
 int		press_key(int key, void *p);
 
-int main()
+int main(int ac, char **av)
 {
 //	cc -lmlx -framework OpenGL -framework AppKit *.c
 	t_data data;
 
+	if (ac != 2)
+		return 1; // error
+	parse_mini_rt(av[1]);
+	return 0;
 	data_init(&data);
 	mlx_key_hook(data.win, press_key, &data);
 	mlx_loop_hook(data.mlx, loop_func, &data);

@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-# include "mlx.h"
+//# include "mlx.h"
 # include "ft_math.h"
 
 ////////// testing
@@ -26,6 +26,11 @@
 typedef int t_object_type;
 # define SP 0
 # define LIGHT 1
+
+typedef int t_bool;
+# define TRUE 1
+# define FALSE 0
+
 typedef struct s_object
 {
 	t_object_type	type;
@@ -111,6 +116,30 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
+// hakim added
+typedef struct s_ambient
+{
+	t_color	color;
+	double	ratio;
+}	t_ambient;
+
+typedef struct s_scenes {
+	t_ambient ambient;
+	t_camera camera;
+	t_light light;
+	int mask;
+} t_scenes;
+
+typedef struct s_objects {
+	t_sphere* spheres;
+	t_plane* planes;
+	t_cylinder* cylinders;
+	int sp;
+	int pl;
+	int cy;
+} t_objects;
+// hakim added#
+
 /*
  * 	ft_constructor.c
  */
@@ -130,5 +159,11 @@ int			hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec);
 int			color_sphere(t_sphere *sp, t_ray *ray);
 int			lighting(t_scene *scene);
 t_color		point_light_get(t_scene *scene, t_light *light);
+
+/*
+ * parse.c
+ */
+
+void		parse_mini_rt(char* filename);
 
 #endif

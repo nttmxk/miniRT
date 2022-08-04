@@ -111,21 +111,22 @@ int	lighting(t_scene *scene)
 		lights = lights->next;
 	}
 	light_color = plus_vec(light_color, scene->ambient);
-	return (get_color(
-			min_vec(
-				mul_vec(light_color, scene->rec.albedo),
-				make_color(1, 1, 1))
-						));
+//	return (get_color(
+//			min_vec(
+//				mul_vec(light_color, scene->rec.albedo),
+//				make_color(1, 1, 1))
+//						));
+	return (0);
 }
 
 t_color	point_light_get(t_scene *scene, t_light *light)
 {
 	t_color	diffuse;
 	t_vec	light_dir;
-	double	kd;
+	double	kd = 0;
 
-	light_dir = unit_vec(minus_vec(light->point, scene->rec.p));
-	kd = fmax(dot_vec(scene->rec.n, light_dir), 0.0);
+//	light_dir = unit_vec(minus_vec(light->point, scene->rec.p));
+//	kd = fmax(dot_vec(scene->rec.n, light_dir), 0.0);
 	diffuse = mul_vec_s(light->color, kd);
 	return (diffuse);
 }
