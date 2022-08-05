@@ -19,7 +19,7 @@ void	put_color(char const *splitted, t_color *color)
 
 	rgb = ft_split(splitted, ',');
 	check_length(rgb, 3);
-	*color = make_color(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
+	*color = make_color(ft_atoi(rgb[0])/255.0, ft_atoi(rgb[1])/255.0, ft_atoi(rgb[2])/255.0);
 	color_check(*color);
 	free(rgb);
 }

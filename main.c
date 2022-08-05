@@ -1,4 +1,5 @@
 #include "includes/minirt.h"
+#include "includes/ft_math.h"
 #include "mlx.h"
 
 void	data_init(t_data *data);
@@ -8,7 +9,7 @@ int		press_key(int key, void *p);
 
 int main(int ac, char **av)
 {
-	t_data data;
+	t_data data = {0};
 
 //	if (ac != 2)
 //		return 1; // error
@@ -26,13 +27,9 @@ int loop_func(t_data *data)
 	int x;
 	int y;
 	double u, v;
-	t_sphere	sp;
-	t_ray		ray;
-	t_camera	cam;
+	t_scene *scene;
 
-	sp.point = make_point(0, 0, -30);
-	sp.dia = 25;
-	cam = make_cam();
+	scene = &data->scene;
 	x = -1;
 	while (++x < WIN_WIDTH)
 	{
@@ -41,8 +38,10 @@ int loop_func(t_data *data)
 		{
 			u = (double)x / (WIN_WIDTH - 1);
 			v = (double)y / (WIN_HEIGHT - 1);
-			ray = make_view(&cam, u, v);
-			my_mlx_pixel_put(data, x, y, color_sphere(&sp, &ray));
+			scene->ray = make_view(&scene->camera, u, v);
+			data->scene.rec.tmax = 9999999;
+			data->scene.rec.tmin = 1e-6;
+			my_mlx_pixel_put(data, x,  WIN_HEIGHT - y - 1, color_sphere(scene, &data->objects));
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
@@ -52,6 +51,13 @@ int loop_func(t_data *data)
 void	data_init(t_data *data)
 {
 	data->mlx = mlx_init();
+	data->scene.camera.left = minus_vec(
+			minus_vec(data->scene.camera.orig,
+					  plus_vec(
+							  divide_vec_s(make_vec(WIN_WIDTH, 0, 0), 2),
+							  divide_vec_s(make_vec(0, WIN_HEIGHT, 0), 2)
+					  )),
+			make_vec(0, 0, 100));
 	if (!data->mlx)
 		exit(1);
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "miniRT");

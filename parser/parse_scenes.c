@@ -18,7 +18,7 @@
  * ambient lighting ratio in range [0.0,1.0]: 0.2
  * R,G,B colors in range [0-255]: 255, 255, 255
  */
-void	parse_ambient(char **splitted, t_scenes *scene)
+void	parse_ambient(char **splitted, t_scene *scene)
 {
 	t_ambient	*ambient;
 
@@ -40,7 +40,7 @@ void	parse_ambient(char **splitted, t_scenes *scene)
  * In range [-1,1] for each x,y,z axis: 0.0,0.0,1.0
  ∗ FOV : Horizontal field of view in degrees in range [0,180]
  */
-void	parse_camera(char **splitted, t_scenes *scene)
+void	parse_camera(char **splitted, t_scene *scene)
 {
 	t_camera	*camera;
 
@@ -62,7 +62,7 @@ void	parse_camera(char **splitted, t_scenes *scene)
  ∗ the light brightness ratio in range [0.0,1.0]: 0.6
  ∗ (unused in mandatory part)R,G,B colors in range [0-255]: 10, 0, 255
  */
-void	parse_light(char **splitted, t_scenes *scene)
+void	parse_light(char **splitted, t_scene *scene)
 {
 	t_light	*light;
 

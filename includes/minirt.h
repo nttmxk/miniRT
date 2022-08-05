@@ -40,8 +40,9 @@ t_ray		make_view(t_camera *cam, double u, double v);
 t_point		ray_at(t_ray *ray, double t);
 t_camera	make_cam(void);
 void		print_vec(t_vec vec);
-int			hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec);
-int			color_sphere(t_sphere *sp, t_ray *ray);
+void		hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec);
+int			color_sphere(t_scene *scene, t_objects *ob);
+void		scene_init_for_temp(t_scene *scene);
 
 /*
  * 	phong_lighting.c

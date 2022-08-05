@@ -16,9 +16,9 @@
 # include "structures.h"
 
 /* parse_scenes */
-void		parse_ambient(char **splitted, t_scenes *scene);
-void		parse_camera(char **splitted, t_scenes *scene);
-void		parse_light(char **splitted, t_scenes *scene);
+void		parse_ambient(char **splitted, t_scene *scene);
+void		parse_camera(char **splitted, t_scene *scene);
+void		parse_light(char **splitted, t_scene *scene);
 
 /* parse_objs */
 void		parse_sphere(char **splitted, t_objects *objects);
