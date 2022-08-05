@@ -60,33 +60,33 @@ int get_color(t_color c)
 void	scene_init_for_temp(t_scene *scene)
 {
 	double		ka;
-	t_object	*obj, *obj2;
-	t_light		*light, *light2;
+	t_object	*obj;//, *obj2;
+	t_light		*light;//, *light2;
 
-	ka = 0.1;
+	ka = 0.3;
 	scene->rec.tmax = 99999;
 	scene->rec.tmin = 1e-6;
 	scene->rec.albedo = make_color(0.7, 0, 0);
 	scene->ambient = make_color(ka, ka, ka);
 	obj = malloc(sizeof(t_object));
-	obj2 = malloc(sizeof(t_object));
+//	obj2 = malloc(sizeof(t_object));
 	light = malloc(sizeof(t_light));
-	light2 = malloc(sizeof(t_light));
+//	light2 = malloc(sizeof(t_light));
 	scene->light = obj;
 	obj->type = LIGHT;
 	obj->element = light;
-	obj->next = obj2;
-	obj2->type = LIGHT;
-	obj2->element = light2;
-	obj2->next = NULL;
+	obj->next = NULL;
+//	obj->next = obj2;
+//	obj2->type = LIGHT;
+//	obj2->element = light2;
+//	obj2->next = NULL;
 
-	light->point = make_point(10, 10, -100);
-	light->bright = 1; // not used?
+	light->point = make_point(10, 10, -10);
 	light->color = make_color(1, 1, 1);
 
-	light2->color = make_color(1, 1, 1);
-	light2->bright = 1;
-	light2->point = make_point(0, 0, -10);
+//	light2->color = make_color(1, 1, 1);
+//	light2->bright = 1;
+//	light2->point = make_point(0, 0, -10);
 }
 
 int color_sphere(t_sphere *sp, t_ray *ray)
@@ -96,8 +96,8 @@ int color_sphere(t_sphere *sp, t_ray *ray)
 
 	scene_init_for_temp(&scene);
 	if (hit_sphere(sp, ray, &scene.rec))
-//		return (lighting(&scene));
-		return (get_color(mul_vec_s(make_color(scene.rec.n.x + 1, scene.rec.n.y + 1, scene.rec.n.z + 1), 0.5)));
+		return (lighting(&scene));
+//		return (get_color(mul_vec_s(make_color(scene.rec.n.x + 1, scene.rec.n.y + 1, scene.rec.n.z + 1), 0.5)));
 	else
 	{
 		t = 0.5 * (scene.ray.dir.y + 1.0);

@@ -31,8 +31,8 @@ t_color	point_light_get(t_scene *scene, t_light *light)
 
 	view_dir = unit_vec(mul_vec_s(scene->ray.dir, -1));
 	reflect_dir = reflect(light_dir, scene->rec.n);
-	ksn = 30;
-	ks = 0.8;
+	ksn = 60;
+	ks = 0.5;
 	spec = pow(fmax(dot_vec(view_dir, reflect_dir), 0.0), ksn);
 	specular = mul_vec_s(mul_vec_s(light->color, ks), spec);
 
@@ -41,10 +41,7 @@ t_color	point_light_get(t_scene *scene, t_light *light)
 
 t_vec	reflect(t_vec v, t_vec n)
 {
-	return (plus_vec(
-			mul_vec_s(v, -1),
-			mul_vec_s(n, 2 * dot_vec(v, n))
-		));
+	return (minus_vec(v, mul_vec_s(n, 2 * dot_vec(v, n))));
 }
 
 int	lighting(t_scene *scene)
@@ -62,7 +59,7 @@ int	lighting(t_scene *scene)
 		lights = lights->next;
 	}
 	light_color = plus_vec(light_color, scene->ambient);
-	free(scene->light->element); ////// for test
+	free(scene->light->element); ////// for testing
 	free(scene->light);
 	return (get_color(
 			min_vec(mul_vec(light_color, scene->rec.albedo),
