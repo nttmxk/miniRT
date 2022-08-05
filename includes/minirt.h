@@ -24,7 +24,7 @@
 # define WIN_WIDTH	1200
 # define WIN_HEIGHT	800
 ////////////////////////
-
+# define EPSILON 1e-6
 /*
  * 	ft_constructor.c
  */
@@ -43,6 +43,7 @@ void		print_vec(t_vec vec);
 void		hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec);
 int			color_sphere(t_scene *scene, t_objects *ob);
 void		scene_init_for_temp(t_scene *scene);
+void		hit_plane(t_plane *pl, t_ray *ray, t_rec *rec);
 
 /*
  * 	phong_lighting.c
