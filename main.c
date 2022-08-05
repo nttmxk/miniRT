@@ -50,12 +50,12 @@ int loop_func(t_data *data)
 void	data_init(t_data *data)
 {
 	data->mlx = mlx_init();
-	data->scene.camera.left = minus_vec(
-			minus_vec(data->scene.camera.orig,
-					  plus_vec(
-							  divide_vec_s(make_vec(WIN_WIDTH, 0, 0), 2),
-							  divide_vec_s(make_vec(0, WIN_HEIGHT, 0), 2)
-					  )),
+	data->scene.camera.left = vminus(
+			vminus(data->scene.camera.orig,
+				   vplus(
+						   vdivide(make_vec(WIN_WIDTH, 0, 0), 2),
+						   vdivide(make_vec(0, WIN_HEIGHT, 0), 2)
+				   )),
 			make_vec(0, 0, 100));
 	if (!data->mlx)
 		exit(1);

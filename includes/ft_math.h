@@ -18,16 +18,16 @@
 # define SKYBLUE 0x00ccff
 
 double			s2_vec(t_vec vec);
-double			len_vec(t_vec vec);
-double			dot_vec(t_vec a, t_vec b);
-t_vec			plus_vec(t_vec a, t_vec b);
-t_vec			minus_vec(t_vec a, t_vec b);
-t_vec			mul_vec(t_vec a, t_vec b);
-t_vec			mul_vec_s(t_vec vec, double t);
-t_vec			divide_vec_s(t_vec vec, double t);
-t_vec			cross_vec(t_vec a, t_vec b);
-t_vec			unit_vec(t_vec vec);
-t_vec			min_vec(t_vec a, t_vec b);
+double			vlen(t_vec vec);
+double			vdot(t_vec a, t_vec b);
+t_vec			vplus(t_vec a, t_vec b);
+t_vec			vminus(t_vec a, t_vec b);
+t_vec			vmul(t_vec a, t_vec b);
+t_vec			vsmul(t_vec vec, double t);
+t_vec			vdivide(t_vec vec, double t);
+t_vec			vcross(t_vec a, t_vec b);
+t_vec			vunit(t_vec vec);
+t_vec			vmin(t_vec a, t_vec b);
 
 int				get_color(t_color c);
 
