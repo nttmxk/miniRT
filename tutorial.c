@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "includes/minirt.h"
 #include "mlx.h"
 
 void	data_init(t_data *data);
@@ -8,7 +8,6 @@ int		press_key(int key, void *p);
 
 int main(int ac, char **av)
 {
-//	cc -lmlx -framework OpenGL -framework AppKit *.c
 	t_data data;
 
 //	if (ac != 2)
@@ -19,6 +18,7 @@ int main(int ac, char **av)
 	mlx_key_hook(data.win, press_key, &data);
 	mlx_loop_hook(data.mlx, loop_func, &data);
 	mlx_loop(data.mlx);
+	return (0);
 }
 
 int loop_func(t_data *data)
