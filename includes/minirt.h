@@ -21,8 +21,8 @@
 # include "structures.h"
 
 ////////// testing
-# define WIN_WIDTH	800
-# define WIN_HEIGHT	600
+# define WIN_WIDTH	1200
+# define WIN_HEIGHT	800
 ////////////////////////
 
 /*
@@ -42,6 +42,10 @@ t_camera	make_cam(void);
 void		print_vec(t_vec vec);
 int			hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec);
 int			color_sphere(t_sphere *sp, t_ray *ray);
+
+/*
+ * 	phong_lighting.c
+ */
 int			lighting(t_scene *scene);
 t_color		point_light_get(t_scene *scene, t_light *light);
 t_vec		reflect(t_vec v, t_vec n);
