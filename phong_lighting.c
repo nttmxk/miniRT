@@ -25,23 +25,23 @@ t_color	point_light_get(t_scene *scene, t_light *light)
 	double	ksn;
 	double	ks;
 
-	light_dir = unit_vec(minus_vec(light->point, scene->rec.p));
-	kd = fmax(dot_vec(scene->rec.n, light_dir), 0.0);
-	diffuse = mul_vec_s(light->color, kd * light->bright);
+	light_dir = vunit(vminus(light->point, scene->rec.p));
+	kd = fmax(vdot(scene->rec.n, light_dir), 0.0);
+	diffuse = vsmul(light->color, kd * light->bright);
 
-	view_dir = unit_vec(mul_vec_s(scene->ray.dir, -1));
-	reflect_dir = reflect(mul_vec_s(light_dir, -1), scene->rec.n);
+	view_dir = vunit(vsmul(scene->ray.dir, -1));
+	reflect_dir = reflect(vsmul(light_dir, -1), scene->rec.n);
 	ksn = 60;
 	ks = 0.5;
-	spec = pow(fmax(dot_vec(view_dir, reflect_dir), 0.0), ksn);
-	specular = mul_vec_s(mul_vec_s(light->color, ks * light->bright), spec);
+	spec = pow(fmax(vdot(view_dir, reflect_dir), 0.0), ksn);
+	specular = vsmul(vsmul(light->color, ks * light->bright), spec);
 
-	return (plus_vec(diffuse, specular));
+	return (vplus(diffuse, specular));
 }
 
 t_vec	reflect(t_vec v, t_vec n)
 {
-	return (minus_vec(v, mul_vec_s(n, 2 * dot_vec(v, n))));
+	return (vminus(v, vsmul(n, 2 * vdot(v, n))));
 }
 
 int	lighting(t_scene *scene)
@@ -51,10 +51,10 @@ int	lighting(t_scene *scene)
 	if (scene->rec.tmax > 9999998)
 		return (get_color(make_color(0, 0, 0)));
 	light_color = make_color(0, 0, 0);
-	light_color = plus_vec(light_color,
-						   point_light_get(scene, &scene->light));
-	light_color = plus_vec(light_color, mul_vec_s(scene->ambient.color, scene->ambient.ratio));
+	light_color = vplus(light_color,
+						point_light_get(scene, &scene->light));
+	light_color = vplus(light_color, vsmul(scene->ambient.color, scene->ambient.ratio));
 	return (get_color(
-			min_vec(mul_vec(light_color, scene->rec.albedo),
-				make_color(1, 1, 1))));
+			vmin(vmul(light_color, scene->rec.albedo),
+				 make_color(1, 1, 1))));
 }

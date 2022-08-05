@@ -48,7 +48,7 @@ t_ray	make_ray(t_point p, t_vec vec)
 	t_ray	ray;
 
 	ray.orig = p;
-	ray.dir = unit_vec(vec);
+	ray.dir = vunit(vec);
 	return (ray);
 }
 
@@ -63,13 +63,13 @@ t_ray	make_view(t_camera *cam, double u, double v)
 	horizontal = make_vec(WIN_WIDTH, 0, 0);
 	vertical = make_vec(0, WIN_HEIGHT, 0);
 	//////////
-	ray.dir = unit_vec(
-			minus_vec(
-				plus_vec(
-					plus_vec(
-						mul_vec_s(horizontal, u), mul_vec_s(vertical, v)),
-					cam->left),
-				cam->orig));
+	ray.dir = vunit(
+			vminus(
+					vplus(
+							vplus(
+									vsmul(horizontal, u), vsmul(vertical, v)),
+							cam->left),
+					cam->orig));
 	return (ray);
 }
 
@@ -79,12 +79,12 @@ t_camera	make_cam(void)
 
 	cam.orig = make_point(0, 0, 10);
 	cam.dir = make_vec(0, 0, -1);
-	cam.left = minus_vec(
-			minus_vec(cam.orig,
-					  plus_vec(
-							  divide_vec_s(make_vec(WIN_WIDTH, 0, 0), 2),
-							  divide_vec_s(make_vec(0, WIN_HEIGHT, 0), 2)
-					  )),
+	cam.left = vminus(
+			vminus(cam.orig,
+				   vplus(
+						   vdivide(make_vec(WIN_WIDTH, 0, 0), 2),
+						   vdivide(make_vec(0, WIN_HEIGHT, 0), 2)
+				   )),
 			make_vec(0, 0, 100));
 	return (cam);
 }

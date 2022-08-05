@@ -20,7 +20,7 @@ void	print_vec(t_vec vec)
 
 t_point	ray_at(t_ray *ray, double t)
 {
-	return (plus_vec(ray->orig, mul_vec_s(ray->dir, t)));
+	return (vplus(ray->orig, vsmul(ray->dir, t)));
 }
 
 void	hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec)
@@ -32,9 +32,9 @@ void	hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec)
 	double	disc;
 	double	sol;
 
-	oc = minus_vec(ray->orig, sp->point);
+	oc = vminus(ray->orig, sp->point);
 	a = s2_vec(ray->dir);
-	b = dot_vec(oc, ray->dir);
+	b = vdot(oc, ray->dir);
 	c = s2_vec(oc) - sp->dia * sp->dia;
 	disc = b * b - a * c;
 	if (disc < 0)
@@ -52,7 +52,7 @@ void	hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec)
 		rec->t = sol;
 		rec->p = ray_at(ray, sol);
 		rec->albedo = sp->color;
-		rec->n = divide_vec_s(minus_vec(rec->p, sp->point) , sp->dia);
+		rec->n = vdivide(vminus(rec->p, sp->point), sp->dia);
 	}
 }
 

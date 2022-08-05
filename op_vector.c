@@ -17,17 +17,17 @@ double	s2_vec(t_vec vec)
 	return (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 }
 
-double	len_vec(t_vec vec)
+double	vlen(t_vec vec)
 {
 	return (sqrt(s2_vec(vec)));
 }
 
-double	dot_vec(t_vec a, t_vec b)
+double	vdot(t_vec a, t_vec b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
-t_vec	plus_vec(t_vec a, t_vec b)
+t_vec	vplus(t_vec a, t_vec b)
 {
 	a.x += b.x;
 	a.y += b.y;
@@ -35,7 +35,7 @@ t_vec	plus_vec(t_vec a, t_vec b)
 	return (a);
 }
 
-t_vec	minus_vec(t_vec a, t_vec b)
+t_vec	vminus(t_vec a, t_vec b)
 {
 	a.x -= b.x;
 	a.y -= b.y;
@@ -43,7 +43,7 @@ t_vec	minus_vec(t_vec a, t_vec b)
 	return (a);
 }
 
-t_vec	mul_vec(t_vec a, t_vec b)
+t_vec	vmul(t_vec a, t_vec b)
 {
 	a.x *= b.x;
 	a.y *= b.y;
@@ -51,7 +51,7 @@ t_vec	mul_vec(t_vec a, t_vec b)
 	return (a);
 }
 
-t_vec	mul_vec_s(t_vec vec, double t)
+t_vec	vsmul(t_vec vec, double t)
 {
 	vec.x *= t;
 	vec.y *= t;
@@ -59,7 +59,7 @@ t_vec	mul_vec_s(t_vec vec, double t)
 	return (vec);
 }
 
-t_vec	divide_vec_s(t_vec vec, double t)
+t_vec	vdivide(t_vec vec, double t)
 {
 	vec.x /= t;
 	vec.y /= t;
@@ -67,7 +67,7 @@ t_vec	divide_vec_s(t_vec vec, double t)
 	return (vec);
 }
 
-t_vec	cross_vec(t_vec a, t_vec b)
+t_vec	vcross(t_vec a, t_vec b)
 {
 	t_vec	vec;
 
@@ -77,18 +77,18 @@ t_vec	cross_vec(t_vec a, t_vec b)
 	return (vec);
 }
 
-t_vec	unit_vec(t_vec vec)
+t_vec	vunit(t_vec vec)
 {
 	double	len;
 
-	len = len_vec(vec);
+	len = vlen(vec);
 	vec.x /= len; // should we consider divided by 0?
 	vec.y /= len;
 	vec.z /= len;
 	return (vec);
 }
 
-t_vec	min_vec(t_vec a, t_vec b)
+t_vec	vmin(t_vec a, t_vec b)
 {
 	if (a.x > b.x)
 		a.x = b.x;
