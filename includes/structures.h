@@ -13,10 +13,6 @@
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-typedef int				t_object_type;
-# define SP 0
-# define LIGHT 1 // for temp
-
 typedef int				t_bool;
 # define TRUE 1
 # define FALSE 0
@@ -30,13 +26,6 @@ typedef struct s_vec
 	double	y;
 	double	z;
 }	t_vec;
-
-typedef struct s_object
-{
-	t_object_type	type;
-	void			*element;
-	void			*next;
-}	t_object;
 
 /* front_face -> set_face_normal but ignore it for now */
 typedef struct s_rec
@@ -71,16 +60,6 @@ typedef struct s_light
 	double	bright;
 	t_color	color;
 }	t_light;
-
-typedef struct s_scene
-{
-	t_rec		rec;
-	t_ray		ray;
-	t_object	*light;
-	t_camera	camera;
-	t_color		ambient;
-	int			mask;
-}	t_scene;
 
 typedef struct s_sphere
 {
@@ -123,12 +102,14 @@ typedef struct s_ambient
 	double	ratio;
 }	t_ambient;
 
-typedef struct s_scenes {
+typedef struct s_scene {
+	t_rec		rec;
+	t_ray		ray;
 	t_ambient	ambient;
 	t_camera	camera;
 	t_light		light;
 	int			mask;
-}	t_scenes;
+}	t_scene;
 
 typedef struct s_objects {
 	t_sphere	*spheres;

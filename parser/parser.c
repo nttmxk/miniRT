@@ -19,7 +19,7 @@
 #include "parser.h"
 
 /* 정규벡터 길이 검사 */
-void	parse_line(char *line, t_scenes *scene, t_objects *objects)
+void	parse_line(char *line, t_scene *scene, t_objects *objects)
 {
 	char	**splitted;
 

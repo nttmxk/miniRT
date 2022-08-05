@@ -14,7 +14,7 @@
 
 static t_bool	in_range(double value, double min, double max)
 {
-	if (value <= min || value >= max)
+	if (value < min || value > max)
 		return (FALSE);
 	return (TRUE);
 }
