@@ -84,17 +84,6 @@ typedef struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
-typedef struct s_data
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}	t_data;
-
 // hakim added
 typedef struct s_ambient
 {
@@ -120,5 +109,18 @@ typedef struct s_objects {
 	int			cy;
 }	t_objects;
 // hakim added#
+
+typedef struct s_data
+{
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_length;
+	int			endian;
+	t_objects	objects;
+	t_scene		scene;
+}	t_data;
 
 #endif

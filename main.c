@@ -11,10 +11,9 @@ int main(int ac, char **av)
 {
 	t_data data = {0};
 
-//	if (ac != 2)
-//		return 1; // error
-//	parse_mini_rt(av[1]);
-//	return 0;
+	if (ac != 2)
+		return 1; // error
+	parse_mini_rt(av[1], &data);
 	data_init(&data);
 	mlx_key_hook(data.win, press_key, &data);
 	mlx_loop_hook(data.mlx, loop_func, &data);

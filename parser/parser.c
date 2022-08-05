@@ -51,10 +51,8 @@ void	parse_line(char *line, t_scene *scene, t_objects *objects)
  * if filename is empty, return error;
  * if filename is valid, read it line by line;
  */
-void	parse_mini_rt(char *filename)
+void	parse_mini_rt(char *filename, t_data *data)
 {
-	t_scenes	scene;
-	t_objects	objects;
 	int			rt;
 	char		*line;
 
@@ -68,7 +66,7 @@ void	parse_mini_rt(char *filename)
 	while (line != NULL)
 	{
 		if (line[0] != '\n')
-			parse_line(line, &scene, &objects);
+			parse_line(line, &data->scene, &data->objects);
 		free(line);
 		line = get_next_line(rt);
 	}
