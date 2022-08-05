@@ -30,7 +30,7 @@ t_color	point_light_get(t_scene *scene, t_light *light)
 	diffuse = mul_vec_s(light->color, kd);
 
 	view_dir = unit_vec(mul_vec_s(scene->ray.dir, -1));
-	reflect_dir = reflect(light_dir, scene->rec.n);
+	reflect_dir = reflect(mul_vec_s(light_dir, -1), scene->rec.n);
 	ksn = 60;
 	ks = 0.5;
 	spec = pow(fmax(dot_vec(view_dir, reflect_dir), 0.0), ksn);

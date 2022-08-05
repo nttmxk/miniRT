@@ -81,7 +81,7 @@ void	scene_init_for_temp(t_scene *scene)
 //	obj2->element = light2;
 //	obj2->next = NULL;
 
-	light->point = make_point(10, 10, -10);
+	light->point = make_point(10, 1000, -10);
 	light->color = make_color(1, 1, 1);
 
 //	light2->color = make_color(1, 1, 1);
