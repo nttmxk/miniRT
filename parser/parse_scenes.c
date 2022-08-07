@@ -27,10 +27,7 @@ void	parse_ambient(char **splitted, t_scene *scene)
 	ratio_check(ambient->ratio);
 	put_color(splitted[2], &ambient->color);
 	if (scene->mask & 1)
-	{
-		printf("Error: ambient already defined\n");
-		exit(1);
-	}
+		error_msg_exit("ambient already defined\n");
 	scene->mask += 1;
 }
 
@@ -50,10 +47,7 @@ void	parse_camera(char **splitted, t_scene *scene)
 	camera->fov = ft_atod(splitted[3]);
 	fov_check(camera->fov);
 	if (scene->mask & 2)
-	{
-		printf("Error: camera already defined\n");
-		exit(1);
-	}
+		error_msg_exit("camera already defined\n");
 	scene->mask = 2;
 }
 
@@ -72,9 +66,6 @@ void	parse_light(char **splitted, t_scene *scene)
 	ratio_check(light->bright);
 	put_color(splitted[3], &light->color);
 	if (scene->mask & 4)
-	{
-		printf("Error: light already defined\n");
-		exit(1);
-	}
+		error_msg_exit("light already defined\n");
 	scene->mask = 4;
 }

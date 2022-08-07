@@ -11,18 +11,19 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "parser.h"
 
 static void	if_end_exit(char c, char end)
 {
 	if (end == 'y')
 	{
 		if (c == '\0' || c == '\n')
-			exit(1);
+			error_msg_exit("non numeric value detected\n");
 	}
 	if (end == 'n')
 	{
 		if (c != '\0' && c != '\n')
-			exit(1);
+			error_msg_exit("non numeric value detected\n");
 	}
 }
 
@@ -36,7 +37,7 @@ static int	check_space(const char *str)
 	return (index);
 }
 
-int	ft_atoi(const char *str, int *ret)
+int	ft_atoi(const char *str)
 {
 	unsigned long long	result;
 	int					plma;

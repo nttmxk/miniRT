@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "parser.h"
 
 t_bool	check_length(char **splitted, int length)
 {
@@ -20,34 +21,18 @@ t_bool	check_length(char **splitted, int length)
 	while (splitted[i] != NULL)
 		++i;
 	if (i != length)
-	{
-		printf("Error: wrong number of arguments\n");
-		exit(1);
-	}
+		error_msg_exit("wrong number of arguments\n");
 	return (TRUE);
 }
 
 void	ratio_check(double ratio)
 {
 	if (ratio < 0.0 || ratio > 1.0)
-	{
-		printf("ambient ratio must be in range [0.0,1.0]\n");
-		exit(1);
-	}
+		error_msg_exit("ratio must be in range [0.0,1.0]\n");
 }
 
-void	color_check(t_color color)
+void	color_check(int r, int g, int b)
 {
-	double	r;
-	double	g;
-	double	b;
-
-	r = color.x;
-	g = color.y;
-	b = color.z;
-	if (r < 0.0 || r > 255.0 || g < 0.0 || g > 255.0 || b < 0.0 || b > 255.0)
-	{
-		printf("Ambient color must be in format R,G,B\n");
-		exit(1);
-	}
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		error_msg_exit("color must be in format R,G,B [0-255]\n");
 }
