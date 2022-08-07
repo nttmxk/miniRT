@@ -10,16 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_math.h"
 #include "includes/minirt.h"
+#include "includes/ft_math.h"
 
 static int		check_height(t_cylinder *cy, t_point p);
 static t_vec	get_cylinder_n(t_cylinder *cy, t_point p);
-static void		hit_cylinder_circle(t_cylinder *cy, t_ray *ray, t_rec *rec, int dir);
+static void		hit_cylinder_circle(t_cylinder *cy,
+					t_ray *ray, t_rec *rec, double dir);
 static void		hit_cylinder_s(t_cylinder *cy, t_ray *ray, t_rec *rec);
 
 void	hit_cylinder(t_cylinder *cy, t_ray *ray, t_rec *rec)
 {
+	cy->dir = vunit(cy->dir); // delete later
 	hit_cylinder_circle(cy, ray, rec, 1);
 	hit_cylinder_circle(cy, ray, rec, -1);
 	hit_cylinder_s(cy, ray, rec);
@@ -27,7 +29,7 @@ void	hit_cylinder(t_cylinder *cy, t_ray *ray, t_rec *rec)
 
 static void	hit_cylinder_s(t_cylinder *cy, t_ray *ray, t_rec *rec)
 {
-	t_vec 	p;
+	t_vec	p;
 	double	a;
 	double	b;
 	double	c;
@@ -49,7 +51,7 @@ static void	hit_cylinder_s(t_cylinder *cy, t_ray *ray, t_rec *rec)
 			return ;
 	}
 	if (!check_height(cy, ray_at(ray, sol)))
-		return;
+		return ;
 	rec->tmax = sol;
 	rec->t = sol;
 	rec->p = ray_at(ray, sol);
@@ -57,17 +59,18 @@ static void	hit_cylinder_s(t_cylinder *cy, t_ray *ray, t_rec *rec)
 	rec->n = get_cylinder_n(cy, rec->p);
 }
 
-static void	hit_cylinder_circle(t_cylinder *cy, t_ray *ray, t_rec *rec, int dir)
+static void	hit_cylinder_circle(t_cylinder *cy,
+							t_ray *ray, t_rec *rec, double dir)
 {
-	t_vec	f;
+	t_point	f;
+	t_point	p;
 	double	numerator;
 	double	t;
-	t_point	p;
 
-	if (vdot(ray->dir, vsmul(cy->dir, dir)) < EPSILON)
+	if (fabs(vdot(ray->dir, cy->dir)) < EPSILON)
 		return ;
-	f = vminus(vplus(cy->point, vsmul(vsmul(cy->dir, dir), cy->height / 2)), ray->orig);
-	numerator = vdot(f, vsmul(cy->dir, dir));
+	f = vplus(cy->point, vsmul(cy->dir, cy->height * dir / 2));
+	numerator = vdot(vminus(f, ray->orig), vsmul(cy->dir, dir));
 	t = numerator / vdot(ray->dir, vsmul(cy->dir, dir));
 	if (t < rec->tmin || t >= rec->tmax)
 		return ;

@@ -13,7 +13,6 @@
 #include "includes/minirt.h"
 #include "includes/ft_math.h"
 
-
 void	hit_plane(t_plane *pl, t_ray *ray, t_rec *rec)
 {
 	double	numerator;
@@ -25,7 +24,7 @@ void	hit_plane(t_plane *pl, t_ray *ray, t_rec *rec)
 		return ;
 	numerator = vdot(vminus(pl->point, ray->orig), pl->dir);
 	sol = numerator / denominator;
-	if (sol < rec->tmin || rec->tmax < sol)
+	if (sol < rec->tmin || rec->tmax <= sol)
 		return ;
 	rec->tmax = sol;
 	rec->t = sol;
