@@ -30,7 +30,7 @@ void		fov_check(double fov);
 void		dia_check(double dia);
 t_bool		check_length(char **splitted, int length);
 void		ratio_check(double ratio);
-void		color_check(t_color color);
+void		color_check(int r, int g, int b);
 void		normalized_check(t_vec normal);
 
 /* putters */
@@ -47,5 +47,6 @@ t_cylinder	*realloc_cy(t_objects *objects, int cy_count);
 char		**ft_split(char const *s, char c);
 double		ft_atod(const char *str);
 int			ft_atoi(const char *str);
+void		error_msg_exit(char *msg);
 
 #endif

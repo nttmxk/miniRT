@@ -15,35 +15,63 @@
 #include <stdio.h>
 #include "get_next_line.h"
 #include "minirt.h"
-#include <string.h> // string and strcmp should be ft_implemented
 #include "parser.h"
 
-/* 정규벡터 길이 검사 */
+//have to discuss how to handle with no camera, no light, no ambient
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	index;
+
+	index = 0;
+	while (s1[index] != '\0' || s2[index] != '\0')
+	{
+		if (s1[index] != s2[index])
+			return ((unsigned char)s1[index] - (unsigned char)s2[index]);
+		index++;
+	}
+	return (0);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	count;
+
+	count = 0;
+	while (str[count] != '\0')
+		count++;
+	return (count);
+}
+
+void	error_msg_exit(char *msg)
+{
+	printf("Error\n");
+	printf("%s", msg);
+	exit(1);
+}
+
 void	parse_line(char *line, t_scene *scene, t_objects *objects)
 {
-	char	**splitted;
+	char	**split;
 
-	splitted = ft_split(line, ' ');
-	if (splitted == NULL)
-		return ;
-	if (strcmp(splitted[0], "A") == 0 && check_length(splitted, 3))
-		parse_ambient(splitted, scene);
-	else if (strcmp(splitted[0], "C") == 0 && check_length(splitted, 4))
-		parse_camera(splitted, scene);
-	else if (strcmp(splitted[0], "L") == 0 && check_length(splitted, 4))
-		parse_light(splitted, scene);
-	else if (strcmp(splitted[0], "sp") == 0 && check_length(splitted, 4))
-		parse_sphere(splitted, objects);
-	else if (strcmp(splitted[0], "pl") == 0 && check_length(splitted, 4))
-		parse_plane(splitted, objects);
-	else if (strcmp(splitted[0], "cy") == 0 && check_length(splitted, 6))
-		parse_cylinder(splitted, objects);
+	split = ft_split(line, ' ');
+	if (split == NULL)
+		error_msg_exit("malloc failure");
+	if (ft_strcmp(split[0], "A") == 0 && check_length(split, 3))
+		parse_ambient(split, scene);
+	else if (ft_strcmp(split[0], "C") == 0 && check_length(split, 4))
+		parse_camera(split, scene);
+	else if (ft_strcmp(split[0], "L") == 0 && check_length(split, 4))
+		parse_light(split, scene);
+	else if (ft_strcmp(split[0], "sp") == 0 && check_length(split, 4))
+		parse_sphere(split, objects);
+	else if (ft_strcmp(split[0], "pl") == 0 && check_length(split, 4))
+		parse_plane(split, objects);
+	else if (ft_strcmp(split[0], "cy") == 0 && check_length(split, 6))
+		parse_cylinder(split, objects);
 	else
-	{
-		printf("Error: unknown format\n");
-		exit(1);
-	}
-	free(splitted);
+		error_msg_exit("Unknown file format\n");
+	free(split);
 }
 
 /*
@@ -56,10 +84,14 @@ void	parse_mini_rt(char *filename, t_data *data)
 	int			rt;
 	char		*line;
 
+	if (filename == NULL)
+		error_msg_exit("Invalid filename\n");
+	if (ft_strcmp(filename + ft_strlen(filename) - 3, ".rt") != 0)
+		error_msg_exit("Invalid filename extension\n");
 	rt = open(filename, O_RDONLY);
 	if (rt == -1)
 	{
-		printf("Error: file not found\n");
+		printf("Error\nfile not found\n");
 		return ;
 	}
 	line = get_next_line(rt);
@@ -73,11 +105,3 @@ void	parse_mini_rt(char *filename, t_data *data)
 	free(line);
 	close(rt);
 }
-
-/*int main(int ac, char **av)
-{
-	if (ac != 2)
-		return 1; // error
-	mini_rt(av[1]);
-	return 0;
-}*/

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "parser.h"
 
 t_sphere	*realloc_sp(t_objects *objects, int sp_count)
 {
@@ -19,10 +20,7 @@ t_sphere	*realloc_sp(t_objects *objects, int sp_count)
 
 	new_spheres = malloc(sizeof(t_sphere) * (sp_count + 1));
 	if (new_spheres == NULL)
-	{
-		printf("Error: malloc failed\n");
-		exit(1);
-	}
+		error_msg_exit("malloc failure\n");
 	i = 0;
 	while (i < sp_count)
 	{
@@ -42,10 +40,7 @@ t_plane	*realloc_pl(t_objects *objects, int pl_count)
 
 	new_planes = malloc(sizeof(t_plane) * (pl_count + 1));
 	if (new_planes == NULL)
-	{
-		printf("Error: malloc failed\n");
-		exit(1);
-	}
+		error_msg_exit("malloc failure\n");
 	i = 0;
 	while (i < pl_count)
 	{
@@ -65,10 +60,7 @@ t_cylinder	*realloc_cy(t_objects *objects, int cy_count)
 
 	new_cylinders = malloc(sizeof(t_cylinder) * (cy_count + 1));
 	if (new_cylinders == NULL)
-	{
-		printf("Error: malloc failed\n");
-		exit(1);
-	}
+		error_msg_exit("malloc failure\n");
 	i = 0;
 	while (i < cy_count)
 	{
