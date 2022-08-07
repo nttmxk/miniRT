@@ -72,7 +72,7 @@ t_vec	vcross(t_vec a, t_vec b)
 	t_vec	vec;
 
 	vec.x = a.y * b.z - a.z * b.y;
-	vec.y = a.z * b.x - a.x + b.z;
+	vec.y = a.z * b.x - a.x * b.z;
 	vec.z = a.x * b.y - a.y * b.x;
 	return (vec);
 }
