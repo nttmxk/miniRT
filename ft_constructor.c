@@ -68,3 +68,16 @@ t_ray	make_view(t_camera *cam, double u, double v)
 				cam->orig));
 	return (ray);
 }
+
+/*
+t_ray	ray_primary(t_camera *cam, double u, double v)
+{
+	t_ray	ray;
+
+	ray.orig = cam->orig;
+	ray.dir = vunit(vminus(vplus(vplus(cam->left_bottom,
+						vmult(cam->horizontal, u)),
+					vmult(cam->vertical, v)),
+				cam->orig));
+	return (ray);
+}*/

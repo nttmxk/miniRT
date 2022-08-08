@@ -16,6 +16,7 @@
 typedef int				t_bool;
 # define TRUE 1
 # define FALSE 0
+# define PI 3.14159265359
 
 typedef struct s_vec	t_point;
 typedef struct s_vec	t_color;
@@ -48,7 +49,12 @@ typedef struct s_camera
 	t_point	orig;
 	t_vec	dir;
 	t_point	left;
+	double	viewport_h;
+	double	viewport_w;
+	t_vec	horizontal;
+	t_vec	vertical;
 	double	fov;
+	double	focal_len;
 }	t_camera;
 
 /* color is unused in mandatory part */

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "ft_math.h"
 #include "parser.h"
 
 void	put_color(char const *splitted, t_color *color)
@@ -58,5 +59,6 @@ void	put_normal_vec(char const *splitted, t_vec *vec)
 	check_length(dir, 3);
 	*vec = make_vec(ft_atod(dir[0]), ft_atod(dir[1]), ft_atod(dir[2]));
 	normalized_check(*vec);
+	*vec = vunit(*vec);
 	free(dir);
 }
