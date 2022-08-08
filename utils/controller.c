@@ -13,90 +13,34 @@
 #include "minirt.h"
 #include "ft_math.h"
 
-static void	traverse_cy(t_objects *objects, int xyz, double change)
-{
-	int		i;
-	t_vec	*dir;
-
-	i = 0;
-	while (i < objects->pl)
-	{
-		dir = &objects->planes[i++].dir;
-		if (xyz == 0)
-			*dir = vunit(vplus(*dir, make_vec(change, 0, 0)));
-		if (xyz == 1)
-			*dir = vunit(vplus(*dir, make_vec(0, change, 0)));
-		if (xyz == 2)
-			*dir = vunit(vplus(*dir, make_vec(0, 0, change)));
-	}
-}
-
-static void	traverse_pl(t_objects *objects, int xyz, double change)
-{
-	int		i;
-	t_vec	*dir;
-
-	i = 0;
-	while (i < objects->cy)
-	{
-		dir = &objects->cylinders[i++].dir;
-		if (xyz == 0)
-			*dir = vunit(vplus(*dir, make_vec(change, 0, 0)));
-		if (xyz == 1)
-			*dir = vunit(vplus(*dir, make_vec(0, change, 0)));
-		if (xyz == 2)
-			*dir = vunit(vplus(*dir, make_vec(0, 0, change)));
-	}
-}
-
-static void	objs_rotate_keys(int key, t_data *data)
-{
-	if (key == 38)
-		traverse_cy(&data->objects, 0, 0.1);
-	if (key == 37)
-		traverse_cy(&data->objects, 0, -0.1);
-	if (key == 34)
-		traverse_cy(&data->objects, 1, 0.1);
-	if (key == 40)
-		traverse_cy(&data->objects, 1, -0.1);
-	if (key == 32)
-		traverse_cy(&data->objects, 2, 0.1);
-	if (key == 31)
-		traverse_cy(&data->objects, 2, -0.1);
-	if (key == 3)
-		traverse_pl(&data->objects, 0, 0.1);
-	if (key == 4)
-		traverse_pl(&data->objects, 0, -0.1);
-	if (key == 17)
-		traverse_pl(&data->objects, 1, 0.1);
-	if (key == 5)
-		traverse_pl(&data->objects, 1, -0.1);
-	if (key == 15)
-		traverse_pl(&data->objects, 2, 0.1);
-	if (key == 16)
-		traverse_pl(&data->objects, 2, -0.1);
-}
-
-static void	camera_translate_keys(int key, t_data *data)
+void	camera_translate_keys(int key, t_data *data)
 {
 	t_vec	*orig;
 
 	orig = &data->scene.camera.orig;
-	if (key == 13)
+	if (key == 19)
 		*orig = vplus(*orig, make_vec(0, 0.2, 0));
-	if (key == 1)
+	if (key == 13)
 		*orig = vplus(*orig, make_vec(0, -0.2, 0));
-	if (key == 2)
-		*orig = vplus(*orig, make_vec(0.2, 0, 0));
-	if (key == 0)
-		*orig = vplus(*orig, make_vec(-0.2, 0, 0));
-	if (key == 12)
-		*orig = vplus(*orig, make_vec(0, 0, 0.2));
 	if (key == 14)
+		*orig = vplus(*orig, make_vec(0.2, 0, 0));
+	if (key == 12)
+		*orig = vplus(*orig, make_vec(-0.2, 0, 0));
+	if (key == 18)
+		*orig = vplus(*orig, make_vec(0, 0, 0.2));
+	if (key == 20)
 		*orig = vplus(*orig, make_vec(0, 0, -0.2));
+	if (key == 30)
+		traverse_sp_translate(&data->objects, 0, 0.2);
+	if (key == 35)
+		traverse_sp_translate(&data->objects, 0, -0.2);
+	if (key == 27)
+		traverse_sp_translate(&data->objects, 1, 0.2);
+	if (key == 33)
+		traverse_sp_translate(&data->objects, 1, -0.2);
 }
 
-int	press_key(int key, t_data *data)
+void	camera_rotate_keys(int key, t_data *data)
 {
 	t_vec	*dir;
 
@@ -111,8 +55,83 @@ int	press_key(int key, t_data *data)
 		*dir = vunit(vplus(*dir, make_vec(0.1, 0, 0)));
 	if (key == 123)
 		*dir = vunit(vplus(*dir, make_vec(-0.1, 0, 0)));
-	camera_translate_keys(key, data);
-	objs_rotate_keys(key, data);
-	draw(data);
-	return (0);
+	if (key == 29)
+		traverse_sp_translate(&data->objects, 2, 0.2);
+	if (key == 24)
+		traverse_sp_translate(&data->objects, 2, -0.2);
+}
+
+void	light_translate_keys(int key, t_data *data)
+{
+	t_vec	*orig;
+
+	orig = &data->scene.light.point;
+	if (key == 1)
+		*orig = vplus(*orig, make_vec(0, 0.2, 0));
+	if (key == 7)
+		*orig = vplus(*orig, make_vec(0, -0.2, 0));
+	if (key == 8)
+		*orig = vplus(*orig, make_vec(0.2, 0, 0));
+	if (key == 6)
+		*orig = vplus(*orig, make_vec(-0.2, 0, 0));
+	if (key == 0)
+		*orig = vplus(*orig, make_vec(0, 0, 0.2));
+	if (key == 2)
+		*orig = vplus(*orig, make_vec(0, 0, -0.2));
+}
+
+void	objs_rotate_keys(int key, t_data *data)
+{
+	if (key == 32)
+		traverse_cy_rotate(&data->objects, 0, 0.1);
+	if (key == 31)
+		traverse_cy_rotate(&data->objects, 0, -0.1);
+	if (key == 28)
+		traverse_cy_rotate(&data->objects, 1, 0.1);
+	if (key == 34)
+		traverse_cy_rotate(&data->objects, 1, -0.1);
+	if (key == 26)
+		traverse_cy_rotate(&data->objects, 2, 0.1);
+	if (key == 25)
+		traverse_cy_rotate(&data->objects, 2, -0.1);
+	if (key == 15)
+		traverse_pl_rotate(&data->objects, 0, 0.1);
+	if (key == 16)
+		traverse_pl_rotate(&data->objects, 0, -0.1);
+	if (key == 23)
+		traverse_pl_rotate(&data->objects, 1, 0.1);
+	if (key == 17)
+		traverse_pl_rotate(&data->objects, 1, -0.1);
+	if (key == 21)
+		traverse_pl_rotate(&data->objects, 2, 0.1);
+	if (key == 22)
+		traverse_pl_rotate(&data->objects, 2, -0.1);
+}
+
+void	objs_translate_keys(int key, t_data *data)
+{
+	if (key == 9)
+		traverse_cy_translate(&data->objects, 0, 0.2);
+	if (key == 45)
+		traverse_cy_translate(&data->objects, 0, -0.2);
+	if (key == 5)
+		traverse_cy_translate(&data->objects, 1, 0.2);
+	if (key == 11)
+		traverse_cy_translate(&data->objects, 1, -0.2);
+	if (key == 3)
+		traverse_cy_translate(&data->objects, 2, 0.2);
+	if (key == 4)
+		traverse_cy_translate(&data->objects, 2, -0.2);
+	if (key == 46)
+		traverse_pl_translate(&data->objects, 0, 0.2);
+	if (key == 47)
+		traverse_pl_translate(&data->objects, 0, -0.2);
+	if (key == 37)
+		traverse_pl_translate(&data->objects, 1, 0.2);
+	if (key == 47)
+		traverse_pl_translate(&data->objects, 1, -0.2);
+	if (key == 40)
+		traverse_pl_translate(&data->objects, 2, 0.2);
+	if (key == 39)
+		traverse_pl_translate(&data->objects, 2, -0.2);
 }
