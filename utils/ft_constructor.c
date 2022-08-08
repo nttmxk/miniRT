@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
-#include "includes/ft_math.h"
+#include "minirt.h"
+#include "ft_math.h"
 
 t_vec	make_vec(double x, double y, double z)
 {
