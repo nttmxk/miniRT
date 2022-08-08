@@ -29,6 +29,4 @@ t_vec			vcross(t_vec a, t_vec b);
 t_vec			vunit(t_vec vec);
 t_vec			vmin(t_vec a, t_vec b);
 
-int				get_color(t_color c);
-
 #endif

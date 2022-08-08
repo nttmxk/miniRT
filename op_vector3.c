@@ -1,44 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_vector.c                                        :+:      :+:    :+:   */
+/*   op_vector3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinoh <jinoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/30 15:23:15 by jinoh             #+#    #+#             */
-/*   Updated: 2022/07/30 15:23:16 by jinoh            ###   ########.fr       */
+/*   Created: 2022/08/08 15:07:40 by jinoh             #+#    #+#             */
+/*   Updated: 2022/08/08 15:07:44 by jinoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_math.h"
 
-double	s2_vec(t_vec vec)
+t_vec	vmin(t_vec a, t_vec b)
 {
-	return (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
-}
-
-double	vlen(t_vec vec)
-{
-	return (sqrt(s2_vec(vec)));
-}
-
-double	vdot(t_vec a, t_vec b)
-{
-	return (a.x * b.x + a.y * b.y + a.z * b.z);
-}
-
-t_vec	vplus(t_vec a, t_vec b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	a.z += b.z;
-	return (a);
-}
-
-t_vec	vminus(t_vec a, t_vec b)
-{
-	a.x -= b.x;
-	a.y -= b.y;
-	a.z -= b.z;
+	if (a.x > b.x)
+		a.x = b.x;
+	if (a.y > b.y)
+		a.y = b.y;
+	if (a.z > b.z)
+		a.z = b.z;
 	return (a);
 }
