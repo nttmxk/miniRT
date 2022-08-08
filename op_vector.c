@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_math.h"
+#include "ft_math.h"
 
 double	s2_vec(t_vec vec)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_math.h"
+#include "ft_math.h"
 
 t_vec	vmin(t_vec a, t_vec b)
 {

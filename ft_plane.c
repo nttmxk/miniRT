@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
-#include "includes/ft_math.h"
+#include "minirt.h"
+#include "ft_math.h"
 
 void	hit_plane(t_plane *pl, t_ray *ray, t_rec *rec)
 {

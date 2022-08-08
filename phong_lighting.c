@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
-#include "includes/ft_math.h"
+#include "minirt.h"
+#include "ft_math.h"
 
 t_color	point_light_get(t_scene *scene, t_light *light, t_objects *ob)
 {
