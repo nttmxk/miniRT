@@ -78,28 +78,12 @@ void	camera_init(t_camera *camera)
 	camera->left = vminus(vminus(vminus(camera->orig,
 										vdivide(camera->horizontal, 2)),
 								 vdivide(camera->vertical, 2)), w);
-	printf("cam orig: %f, %f, %f", camera->orig.x, camera->orig.y, camera->orig.z);
-	printf("focal: %f\n", camera->focal_len);
-	printf("vp h, w: %f, %f\n", camera->viewport_h, camera->viewport_w);
-	printf("camdir: %f, %f, %f\n", camera->dir.x, camera->dir.y, camera->dir.z);
-	printf("up: %f, %f, %f\n", updir.x, updir.y, updir.z);
-	printf("w: %f, %f, %f\n", w.x, w.y, w.z);
-	printf("u: %f, %f, %f\n", u.x, u.y, u.z);
-	printf("v: %f, %f, %f\n", v.x, v.y, v.z);
-	printf("left: %f, %f, %f\n", camera->left.x, camera->left.y, camera->left.z);
 }
 
 void	data_init(t_data *data)
 {
 	data->mlx = mlx_init();
 	camera_init(&data->scene.camera);
-	data->scene.camera.left = vminus(
-			vminus(data->scene.camera.orig,
-				   vplus(
-						   vdivide(make_vec(WIN_WIDTH, 0, 0), 2),
-						   vdivide(make_vec(0, WIN_HEIGHT, 0), 2)
-				   )),
-			make_vec(0, 0, 100));
 	if (!data->mlx)
 		exit(1);
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "miniRT");

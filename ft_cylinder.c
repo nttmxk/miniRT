@@ -66,6 +66,7 @@ static void	hit_cylinder_circle(t_cylinder *cy,
 	if (fabs(vdot(ray->dir, cy->dir)) < EPSILON)
 		return ;
 	f = vplus(cy->point, vsmul(cy->dir, cy->height * dir / 2));
+//	f = vplus(cy->point, vsmul(cy->dir, cy->height * dir));
 	numerator = vdot(vminus(f, ray->orig), vsmul(cy->dir, dir));
 	t = numerator / vdot(ray->dir, vsmul(cy->dir, dir));
 	if (t < rec->tmin || t >= rec->tmax)
@@ -87,6 +88,8 @@ static int	check_height(t_cylinder *cy, t_point p)
 	hit_height = vdot(vminus(p, cy->point), cy->dir);
 	if (fabs(hit_height) > cy->height / 2)
 		return (0);
+//	if (fabs(hit_height) > cy->height)
+//		return (0);
 	return (1);
 }
 
