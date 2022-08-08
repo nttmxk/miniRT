@@ -23,10 +23,13 @@
 # define TMAX	99999
 # define EPSILON 1e-6
 
+void		draw(t_data *data);
+
 /*
  * init.c
  */
 void		data_init(t_data *data);
+void		camera_init(t_camera *camera);
 
 /*
  * 	ft_constructor.c
@@ -73,5 +76,10 @@ int			in_shadow(t_objects *ob, t_ray *ray, t_rec rec, double light_len);
  * parse.c
  */
 void		parse_mini_rt(char *filename, t_data *data);
+
+/*
+ * controller.c
+ */
+int			press_key(int key, t_data *data);
 
 #endif

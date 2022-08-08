@@ -19,7 +19,7 @@
 
 //have to discuss how to handle with no camera, no light, no ambient
 
-int	ft_strcmp(const char *s1, const char *s2)
+static int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	index;
 
@@ -33,7 +33,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-size_t	ft_strlen(const char *str)
+static size_t	ft_strlen(const char *str)
 {
 	size_t	count;
 
@@ -43,14 +43,7 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
-void	error_msg_exit(char *msg)
-{
-	printf("Error\n");
-	printf("%s", msg);
-	exit(1);
-}
-
-void	parse_line(char *line, t_scene *scene, t_objects *objects)
+static void	parse_line(char *line, t_scene *scene, t_objects *objects)
 {
 	char	**split;
 
@@ -72,6 +65,13 @@ void	parse_line(char *line, t_scene *scene, t_objects *objects)
 	else
 		error_msg_exit("Unknown file format\n");
 	ft_free(split);
+}
+
+void	error_msg_exit(char *msg)
+{
+	printf("Error\n");
+	printf("%s", msg);
+	exit(1);
 }
 
 /*

@@ -23,7 +23,7 @@ static t_vec	cam_set_vup(t_vec dir)
 		return (make_vec(0, 1, 0));
 }
 
-static void	camera_init(t_camera *camera)
+void	camera_init(t_camera *camera)
 {
 	t_vec		w;
 	t_vec		u;
@@ -46,7 +46,6 @@ static void	camera_init(t_camera *camera)
 void	data_init(t_data *data)
 {
 	data->mlx = mlx_init();
-	camera_init(&data->scene.camera);
 	if (!data->mlx)
 		exit(1);
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "miniRT");
