@@ -40,18 +40,13 @@ int	color_obj(t_scene *scene, t_objects *ob)
 void	check_hit(t_objects *ob, t_ray *ray, t_rec *rec)
 {
 	int	i;
-	// hit_sphere
+
 	i = -1;
 	while (++i < ob->sp)
 		hit_sphere(&ob->spheres[i], ray, rec);
-	// hit_plane
-	i = -1;
-	while (++i < ob->pl) // delete later
-		ob->planes[i].dir = vunit(ob->planes[i].dir);
 	i = -1;
 	while (++i < ob->pl)
 		hit_plane(&ob->planes[i], ray, rec);
-	// hit_cylinder
 	i = -1;
 	while (++i < ob->cy)
 		hit_cylinder(&ob->cylinders[i], ray, rec);

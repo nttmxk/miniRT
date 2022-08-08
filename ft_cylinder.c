@@ -21,7 +21,6 @@ static void		hit_cylinder_s(t_cylinder *cy, t_ray *ray, t_rec *rec);
 
 void	hit_cylinder(t_cylinder *cy, t_ray *ray, t_rec *rec)
 {
-	cy->dir = vunit(cy->dir); // delete later
 	hit_cylinder_circle(cy, ray, rec, 1);
 	hit_cylinder_circle(cy, ray, rec, -1);
 	hit_cylinder_s(cy, ray, rec);

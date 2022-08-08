@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "includes/ft_math.h"
+#include <stdlib.h>
 
 t_vec	vmul(t_vec a, t_vec b)
 {
@@ -51,7 +52,9 @@ t_vec	vunit(t_vec vec)
 	double	len;
 
 	len = vlen(vec);
-	vec.x /= len; // should we consider divided by 0?
+	if (len == 0)
+		exit(1);
+	vec.x /= len;
 	vec.y /= len;
 	vec.z /= len;
 	return (vec);
