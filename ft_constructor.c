@@ -55,20 +55,16 @@ t_ray	make_ray(t_point p, t_vec vec)
 t_ray	make_view(t_camera *cam, double u, double v)
 {
 	t_ray	ray;
-	t_vec	horizontal;
-	t_vec	vertical;
 
 	ray.orig = cam->orig;
 	/////////// just for test
-	horizontal = make_vec(WIN_WIDTH, 0, 0);
-	vertical = make_vec(0, WIN_HEIGHT, 0);
+//	horizontal = make_vec(WIN_WIDTH, 0, 0);
+//	vertical = make_vec(0, WIN_HEIGHT, 0);
 	//////////
 	ray.dir = vunit(
 			vminus(
 				vplus(
-					vplus(
-						vsmul(horizontal, u), vsmul(vertical, v)),
-					cam->left),
+					vplus(cam->left, vsmul(cam->horizontal, u)), vsmul(cam->vertical, v)),
 				cam->orig));
 	return (ray);
 }

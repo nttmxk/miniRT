@@ -18,8 +18,9 @@
 # include <math.h>
 # include "structures.h"
 
-# define WIN_WIDTH	1200
-# define WIN_HEIGHT	800
+# define WIN_WIDTH	800
+# define WIN_HEIGHT	450
+# define TMAX	99999
 # define EPSILON 1e-6
 /*
  * 	ft_constructor.c

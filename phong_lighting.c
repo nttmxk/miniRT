@@ -43,7 +43,7 @@ int	lighting(t_scene *scene, t_objects *ob)
 {
 	t_color		light_color;
 
-	if (scene->rec.tmax > 9999998)
+	if (scene->rec.tmax > TMAX - 1)
 		return (get_color(make_color(0, 0, 0)));
 	light_color = make_color(0, 0, 0);
 	light_color = vplus(light_color,
