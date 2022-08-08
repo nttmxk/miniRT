@@ -23,9 +23,10 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
+	data = (t_data){0};
 	if (ac != 2)
 	{
-		printf("Usage: ./miniRT scene_file.rt\n");
+		printf("Error\nUsage: ./miniRT scene_file.rt\n");
 		return (1);
 	}
 	parse_mini_rt(av[1], &data);

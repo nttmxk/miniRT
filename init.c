@@ -28,7 +28,6 @@ static void	camera_init(t_camera *camera)
 	t_vec		w;
 	t_vec		u;
 	t_vec		v;
-	t_vec		updir;
 
 	camera->focal_len = tan((camera->fov * PI / 180.0) / 2.0);
 	camera->viewport_h = camera->focal_len * 2;
@@ -50,10 +49,10 @@ void	data_init(t_data *data)
 	camera_init(&data->scene.camera);
 	if (!data->mlx)
 		exit(1);
-	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "miniRT");
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "miniRT");
 	if (!data->win)
 		exit(1);
-	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->img)
 		exit(1);
 	data->addr = mlx_get_data_addr(data->img, &data->bpp,
