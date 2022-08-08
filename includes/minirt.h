@@ -18,10 +18,8 @@
 # include <math.h>
 # include "structures.h"
 
-////////// testing
 # define WIN_WIDTH	1200
 # define WIN_HEIGHT	800
-////////////////////////
 # define EPSILON 1e-6
 /*
  * 	ft_constructor.c
@@ -33,21 +31,36 @@ t_ray		make_ray(t_point p, t_vec vec);
 t_ray		make_view(t_camera *cam, double u, double v);
 
 /*
- * 	test.c
+ * 	utils.c
  */
+void		set_face_normal(t_ray *ray, t_rec *rec);
 t_point		ray_at(t_ray *ray, double t);
-t_camera	make_cam(void);
+int			get_color(t_color c);
 int			color_obj(t_scene *scene, t_objects *ob);
+void		check_hit(t_objects *ob, t_ray *ray, t_rec *rec);
+
+/*
+ * 	ft_sphere.c
+ */
 void		hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec);
+
+/*
+ * 	ft_plane.c
+ */
 void		hit_plane(t_plane *pl, t_ray *ray, t_rec *rec);
+
+/*
+ * 	ft_cylinder.c
+ */
 void		hit_cylinder(t_cylinder *cy, t_ray *ray, t_rec *rec);
 
 /*
  * 	phong_lighting.c
  */
-int			lighting(t_scene *scene);
-t_color		point_light_get(t_scene *scene, t_light *light);
+int			lighting(t_scene *scene, t_objects *ob);
+t_color		point_light_get(t_scene *scene, t_light *light, t_objects *ob);
 t_vec		reflect(t_vec v, t_vec n);
+int			in_shadow(t_objects *ob, t_ray *ray, t_rec rec, double light_len);
 
 /*
  * parse.c

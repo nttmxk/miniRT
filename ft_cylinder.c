@@ -30,23 +30,20 @@ void	hit_cylinder(t_cylinder *cy, t_ray *ray, t_rec *rec)
 static void	hit_cylinder_s(t_cylinder *cy, t_ray *ray, t_rec *rec)
 {
 	t_vec	p;
-	double	a;
-	double	b;
-	double	c;
-	double	disc;
+	t_disc	d;
 	double	sol;
 
 	p = vminus(ray->orig, cy->point);
-	a = s2_vec(vcross(ray->dir, cy->dir));
-	b = vdot(vcross(ray->dir, cy->dir), vcross(p, cy->dir));
-	c = s2_vec(vcross(p, cy->dir)) - ((cy->dia * cy->dia) / 4);
-	disc = b * b - a * c;
-	if (disc < 0)
+	d.a = s2_vec(vcross(ray->dir, cy->dir));
+	d.b = vdot(vcross(ray->dir, cy->dir), vcross(p, cy->dir));
+	d.c = s2_vec(vcross(p, cy->dir)) - ((cy->dia * cy->dia) / 4);
+	d.disc = d.b * d.b - d.a * d.c;
+	if (d.disc < 0)
 		return ;
-	sol = (-b - sqrt(disc)) / a;
+	sol = (-d.b - sqrt(d.disc)) / d.a;
 	if (!(sol >= rec->tmin && sol < rec->tmax))
 	{
-		sol = (-b + sqrt(disc)) / a;
+		sol = (-d.b + sqrt(d.disc)) / d.a;
 		if (!(sol >= rec->tmin && sol < rec->tmax))
 			return ;
 	}

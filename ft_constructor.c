@@ -72,19 +72,3 @@ t_ray	make_view(t_camera *cam, double u, double v)
 				cam->orig));
 	return (ray);
 }
-
-t_camera	make_cam(void)
-{
-	t_camera	cam;
-
-	cam.orig = make_point(0, 0, 10);
-	cam.dir = make_vec(0, 0, -1);
-	cam.left = vminus(
-			vminus(cam.orig,
-				vplus(
-					vdivide(make_vec(WIN_WIDTH, 0, 0), 2),
-					vdivide(make_vec(0, WIN_HEIGHT, 0), 2)
-					)),
-			make_vec(0, 0, 100));
-	return (cam);
-}

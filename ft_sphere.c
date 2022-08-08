@@ -16,23 +16,20 @@
 void	hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec)
 {
 	t_vec	oc;
-	double	a;
-	double	b;
-	double	c;
-	double	disc;
+	t_disc	d;
 	double	sol;
 
 	oc = vminus(ray->orig, sp->point);
-	a = s2_vec(ray->dir);
-	b = vdot(oc, ray->dir);
-	c = s2_vec(oc) - sp->dia * sp->dia / 4;
-	disc = b * b - a * c;
-	if (disc < 0)
+	d.a = s2_vec(ray->dir);
+	d.b = vdot(oc, ray->dir);
+	d.c = s2_vec(oc) - sp->dia * sp->dia / 4;
+	d.disc = d.b * d.b - d.a * d.c;
+	if (d.disc < 0)
 		return ;
-	sol = (-b - sqrt(disc)) / a;
+	sol = (-d.b - sqrt(d.disc)) / d.a;
 	if (!(sol >= rec->tmin && sol < rec->tmax))
 	{
-		sol = (-b + sqrt(disc)) / a;
+		sol = (-d.b + sqrt(d.disc)) / d.a;
 		if (!(sol >= rec->tmin && sol < rec->tmax))
 			return ;
 	}

@@ -13,34 +13,46 @@
 #include "includes/minirt.h"
 #include "includes/ft_math.h"
 
+void	set_face_normal(t_ray *ray, t_rec *rec)
+{
+	if (vdot(ray->dir, rec->n) > 0)
+		rec->n = vsmul(rec->n, -1);
+}
+
 t_point	ray_at(t_ray *ray, double t)
 {
 	return (vplus(ray->orig, vsmul(ray->dir, t)));
 }
 
-int get_color(t_color c)
+int	get_color(t_color c)
 {
-	return (((int)(c.x * 255) << 16) + ((int)(c.y * 255) << 8) + (int)(c.z * 255));
+	return (((int)(c.x * 255) << 16) +
+	((int)(c.y * 255) << 8) + (int)(c.z * 255));
 }
 
-int color_obj(t_scene *scene, t_objects *ob)
+int	color_obj(t_scene *scene, t_objects *ob)
 {
-	int 	i;
+	check_hit(ob, &scene->ray, &scene->rec);
+	set_face_normal(&scene->ray, &scene->rec);
+	return (lighting(scene, ob));
+}
 
+void	check_hit(t_objects *ob, t_ray *ray, t_rec *rec)
+{
+	int	i;
 	// hit_sphere
 	i = -1;
 	while (++i < ob->sp)
-		hit_sphere(&ob->spheres[i], &scene->ray, &scene->rec);
+		hit_sphere(&ob->spheres[i], ray, rec);
 	// hit_plane
 	i = -1;
 	while (++i < ob->pl) // delete later
 		ob->planes[i].dir = vunit(ob->planes[i].dir);
 	i = -1;
 	while (++i < ob->pl)
-		hit_plane(&ob->planes[i], &scene->ray, &scene->rec);
+		hit_plane(&ob->planes[i], ray, rec);
 	// hit_cylinder
 	i = -1;
 	while (++i < ob->cy)
-		hit_cylinder(&ob->cylinders[i], &scene->ray, &scene->rec);
-	return (lighting(scene));
+		hit_cylinder(&ob->cylinders[i], ray, rec);
 }

@@ -7,12 +7,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		loop_func(t_data *data);
 int		press_key(int key, void *p);
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_data data = {0};
 
 	if (ac != 2)
-		return 1; // error
+		return (1); // error
 	parse_mini_rt(av[1], &data);
 	data_init(&data);
 	mlx_key_hook(data.win, press_key, &data);
@@ -21,12 +21,13 @@ int main(int ac, char **av)
 	return (0);
 }
 
-int loop_func(t_data *data)
+int	loop_func(t_data *data)
 {
-	int x;
-	int y;
-	double u, v;
-	t_scene *scene;
+	int		x;
+	int		y;
+	double	u;
+	double	v;
+	t_scene	*scene;
 
 	scene = &data->scene;
 	x = -1;

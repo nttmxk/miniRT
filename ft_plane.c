@@ -31,5 +31,4 @@ void	hit_plane(t_plane *pl, t_ray *ray, t_rec *rec)
 	rec->p = ray_at(ray, sol);
 	rec->n = pl->dir;
 	rec->albedo = pl->color;
-//	set_face_normal(ray, rec);
 }

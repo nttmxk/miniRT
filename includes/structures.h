@@ -27,7 +27,6 @@ typedef struct s_vec
 	double	z;
 }	t_vec;
 
-/* front_face -> set_face_normal but ignore it for now */
 typedef struct s_rec
 {
 	t_point	p;
@@ -35,7 +34,6 @@ typedef struct s_rec
 	double	tmin;
 	double	tmax;
 	double	t;
-	int		front_face;
 	t_color	albedo;
 }	t_rec;
 
@@ -84,7 +82,6 @@ typedef struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
-// hakim added
 typedef struct s_ambient
 {
 	t_color	color;
@@ -108,7 +105,28 @@ typedef struct s_objects {
 	int			pl;
 	int			cy;
 }	t_objects;
-// hakim added#
+
+typedef struct s_phong_light
+{
+	t_color	diffuse;
+	t_color	specular;
+	t_vec	light_dir;
+	t_vec	view_dir;
+	t_vec	reflect_dir;
+	t_ray	light_ray;
+	double	kd;
+	double	spec;
+	double	ksn;
+	double	ks;
+}	t_phong_light;
+
+typedef struct s_disc
+{
+	double	a;
+	double	b;
+	double	c;
+	double	disc;
+}	t_disc;
 
 typedef struct s_data
 {
