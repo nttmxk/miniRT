@@ -80,58 +80,58 @@ void	light_translate_keys(int key, t_data *data)
 		*orig = vplus(*orig, make_vec(0, 0, -0.2));
 }
 
-void	objs_rotate_keys(int key, t_data *data)
+void	plane_keys(int key, t_data *data)
 {
-	if (key == 32)
-		traverse_cy_rotate(&data->objects, 0, 0.1);
-	if (key == 31)
-		traverse_cy_rotate(&data->objects, 0, -0.1);
-	if (key == 28)
-		traverse_cy_rotate(&data->objects, 1, 0.1);
-	if (key == 34)
-		traverse_cy_rotate(&data->objects, 1, -0.1);
-	if (key == 26)
-		traverse_cy_rotate(&data->objects, 2, 0.1);
-	if (key == 25)
-		traverse_cy_rotate(&data->objects, 2, -0.1);
-	if (key == 15)
+	if (key == 46)
 		traverse_pl_rotate(&data->objects, 0, 0.1);
-	if (key == 16)
+	if (key == 47)
 		traverse_pl_rotate(&data->objects, 0, -0.1);
-	if (key == 23)
+	if (key == 40)
 		traverse_pl_rotate(&data->objects, 1, 0.1);
-	if (key == 17)
+	if (key == 43)
 		traverse_pl_rotate(&data->objects, 1, -0.1);
-	if (key == 21)
+	if (key == 38)
 		traverse_pl_rotate(&data->objects, 2, 0.1);
-	if (key == 22)
+	if (key == 37)
 		traverse_pl_rotate(&data->objects, 2, -0.1);
+	if (key == 32)
+		traverse_pl_translate(&data->objects, 0, 0.2);
+	if (key == 31)
+		traverse_pl_translate(&data->objects, 0, -0.2);
+	if (key == 28)
+		traverse_pl_translate(&data->objects, 1, 0.2);
+	if (key == 34)
+		traverse_pl_translate(&data->objects, 1, -0.2);
+	if (key == 26)
+		traverse_pl_translate(&data->objects, 2, 0.2);
+	if (key == 25)
+		traverse_pl_translate(&data->objects, 2, -0.2);
 }
 
-void	objs_translate_keys(int key, t_data *data)
+void	cylinder_keys(int key, t_data *data)
 {
-	if (key == 9)
+	if (key == 15)
 		traverse_cy_translate(&data->objects, 0, 0.2);
-	if (key == 45)
+	if (key == 16)
 		traverse_cy_translate(&data->objects, 0, -0.2);
-	if (key == 5)
+	if (key == 23)
 		traverse_cy_translate(&data->objects, 1, 0.2);
-	if (key == 11)
+	if (key == 17)
 		traverse_cy_translate(&data->objects, 1, -0.2);
-	if (key == 3)
+	if (key == 21)
 		traverse_cy_translate(&data->objects, 2, 0.2);
-	if (key == 4)
+	if (key == 22)
 		traverse_cy_translate(&data->objects, 2, -0.2);
-	if (key == 46)
-		traverse_pl_translate(&data->objects, 0, 0.2);
-	if (key == 47)
-		traverse_pl_translate(&data->objects, 0, -0.2);
-	if (key == 37)
-		traverse_pl_translate(&data->objects, 1, 0.2);
-	if (key == 47)
-		traverse_pl_translate(&data->objects, 1, -0.2);
-	if (key == 40)
-		traverse_pl_translate(&data->objects, 2, 0.2);
-	if (key == 39)
-		traverse_pl_translate(&data->objects, 2, -0.2);
+	if (key == 9)
+		traverse_cy_rotate(&data->objects, 0, 0.1);
+	if (key == 45)
+		traverse_cy_rotate(&data->objects, 0, -0.1);
+	if (key == 5)
+		traverse_cy_rotate(&data->objects, 1, 0.1);
+	if (key == 11)
+		traverse_cy_rotate(&data->objects, 1, -0.1);
+	if (key == 3)
+		traverse_cy_rotate(&data->objects, 2, 0.1);
+	if (key == 4)
+		traverse_cy_rotate(&data->objects, 2, -0.1);
 }

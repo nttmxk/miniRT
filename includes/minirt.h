@@ -53,8 +53,8 @@ void		check_hit(t_objects *ob, t_ray *ray, t_rec *rec);
 void		camera_translate_keys(int key, t_data *data);
 void		camera_rotate_keys(int key, t_data *data);
 void		light_translate_keys(int key, t_data *data);
-void		objs_rotate_keys(int key, t_data *data);
-void		objs_translate_keys(int key, t_data *data);
+void		plane_keys(int key, t_data *data);
+void		cylinder_keys(int key, t_data *data);
 
 /*
  * 	traverse.c
