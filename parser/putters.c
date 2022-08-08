@@ -34,7 +34,7 @@ void	put_color(char const *splitted, t_color *color)
 			(double)g / 255.0,
 			(double)b / 255.0
 			);
-	free(rgb);
+	ft_free(rgb);
 }
 
 void	put_coord(char const *splitted, t_point *point)
@@ -46,7 +46,7 @@ void	put_coord(char const *splitted, t_point *point)
 		error_msg_exit("malloc failure\n");
 	check_length(crd, 3);
 	*point = make_point(ft_atod(crd[0]), ft_atod(crd[1]), ft_atod(crd[2]));
-	free(crd);
+	ft_free(crd);
 }
 
 void	put_normal_vec(char const *splitted, t_vec *vec)
@@ -60,5 +60,5 @@ void	put_normal_vec(char const *splitted, t_vec *vec)
 	*vec = make_vec(ft_atod(dir[0]), ft_atod(dir[1]), ft_atod(dir[2]));
 	normalized_check(*vec);
 	*vec = vunit(*vec);
-	free(dir);
+	ft_free(dir);
 }

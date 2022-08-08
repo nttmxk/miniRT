@@ -71,7 +71,7 @@ void	parse_line(char *line, t_scene *scene, t_objects *objects)
 		parse_cylinder(split, objects);
 	else
 		error_msg_exit("Unknown file format\n");
-	free(split);
+	ft_free(split);
 }
 
 /*

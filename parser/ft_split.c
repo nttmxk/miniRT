@@ -43,17 +43,18 @@ static void	get_si(int *size, int *i, char const *s, char c)
 	}
 }
 
-static void	ft_free(char **big, int bigdex)
+void	ft_free(char **big)
 {
 	int	index;
 
-	index = bigdex - 1;
-	while (index >= 0)
+	index = 0;
+	while (big[index] != NULL)
 	{
 		free(big[index]);
 		big[index] = NULL;
-		--index;
+		++index;
 	}
+	free(big);
 }
 
 static void	go_split(char **big, char const *s, char c, int bigdex)
@@ -72,7 +73,7 @@ static void	go_split(char **big, char const *s, char c, int bigdex)
 		big[bigdex] = (char *)malloc(sizeof(char) * (size + 1));
 		if (big[bigdex] == 0)
 		{
-			ft_free(big, bigdex);
+			ft_free(big);
 			return ;
 		}
 		sindex = 0;

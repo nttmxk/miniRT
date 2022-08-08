@@ -45,6 +45,7 @@ t_cylinder	*realloc_cy(t_objects *objects, int cy_count);
 
 /* utils */
 char		**ft_split(char const *s, char c);
+void		ft_free(char **big);
 double		ft_atod(const char *str);
 int			ft_atoi(const char *str);
 void		error_msg_exit(char *msg);
