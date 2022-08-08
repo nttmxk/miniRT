@@ -103,5 +103,7 @@ void	parse_mini_rt(char *filename, t_data *data)
 		line = get_next_line(rt);
 	}
 	free(line);
+	if (!(data->scene.mask & 2))
+		error_msg_exit("No camera\n");
 	close(rt);
 }
