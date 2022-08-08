@@ -40,7 +40,7 @@ int loop_func(t_data *data)
 			scene->ray = make_view(&scene->camera, u, v);
 			data->scene.rec.tmax = 9999999;
 			data->scene.rec.tmin = EPSILON;
-			my_mlx_pixel_put(data, x,  WIN_HEIGHT - y - 1, color_sphere(scene, &data->objects));
+			my_mlx_pixel_put(data, x,  WIN_HEIGHT - y - 1, color_obj(scene, &data->objects));
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);

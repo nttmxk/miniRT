@@ -28,14 +28,12 @@ t_color	point_light_get(t_scene *scene, t_light *light)
 	light_dir = vunit(vminus(light->point, scene->rec.p));
 	kd = fmax(vdot(scene->rec.n, light_dir), 0.0);
 	diffuse = vsmul(light->color, kd * light->bright);
-
 	view_dir = vunit(vsmul(scene->ray.dir, -1));
 	reflect_dir = reflect(vsmul(light_dir, -1), scene->rec.n);
 	ksn = 60;
 	ks = 0.5;
 	spec = pow(fmax(vdot(view_dir, reflect_dir), 0.0), ksn);
 	specular = vsmul(vsmul(light->color, ks * light->bright), spec);
-
 	return (vplus(diffuse, specular));
 }
 
@@ -52,9 +50,10 @@ int	lighting(t_scene *scene)
 		return (get_color(make_color(0, 0, 0)));
 	light_color = make_color(0, 0, 0);
 	light_color = vplus(light_color,
-						point_light_get(scene, &scene->light));
-	light_color = vplus(light_color, vsmul(scene->ambient.color, scene->ambient.ratio));
+			point_light_get(scene, &scene->light));
+	light_color = vplus(light_color,
+			vsmul(scene->ambient.color, scene->ambient.ratio));
 	return (get_color(
 			vmin(vmul(light_color, scene->rec.albedo),
-				 make_color(1, 1, 1))));
+				make_color(1, 1, 1))));
 }

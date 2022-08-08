@@ -1,35 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_plane.c                                         :+:      :+:    :+:   */
+/*   ft_sphere.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinoh <jinoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/05 21:43:41 by jinoh             #+#    #+#             */
-/*   Updated: 2022/08/05 21:43:48 by jinoh            ###   ########.fr       */
+/*   Created: 2022/08/07 20:36:18 by jinoh             #+#    #+#             */
+/*   Updated: 2022/08/07 20:36:19 by jinoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minirt.h"
 #include "includes/ft_math.h"
 
-void	hit_plane(t_plane *pl, t_ray *ray, t_rec *rec)
+void	hit_sphere(t_sphere *sp, t_ray *ray, t_rec *rec)
 {
-	double	numerator;
-	double	denominator;
+	t_vec	oc;
+	double	a;
+	double	b;
+	double	c;
+	double	disc;
 	double	sol;
 
-	denominator = vdot(ray->dir, pl->dir);
-	if (fabs(denominator) < EPSILON)
+	oc = vminus(ray->orig, sp->point);
+	a = s2_vec(ray->dir);
+	b = vdot(oc, ray->dir);
+	c = s2_vec(oc) - sp->dia * sp->dia / 4;
+	disc = b * b - a * c;
+	if (disc < 0)
 		return ;
-	numerator = vdot(vminus(pl->point, ray->orig), pl->dir);
-	sol = numerator / denominator;
-	if (sol < rec->tmin || rec->tmax <= sol)
-		return ;
+	sol = (-b - sqrt(disc)) / a;
+	if (!(sol >= rec->tmin && sol < rec->tmax))
+	{
+		sol = (-b + sqrt(disc)) / a;
+		if (!(sol >= rec->tmin && sol < rec->tmax))
+			return ;
+	}
 	rec->tmax = sol;
 	rec->t = sol;
 	rec->p = ray_at(ray, sol);
-	rec->n = pl->dir;
-	rec->albedo = pl->color;
-//	set_face_normal(ray, rec);
+	rec->albedo = sp->color;
+	rec->n = vdivide(vminus(rec->p, sp->point), sp->dia / 2);
 }
