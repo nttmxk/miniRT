@@ -18,10 +18,16 @@
 # include <math.h>
 # include "structures.h"
 
-# define WIN_WIDTH	800
-# define WIN_HEIGHT	450
+# define WIDTH	1200
+# define HEIGHT	800
 # define TMAX	99999
 # define EPSILON 1e-6
+
+/*
+ * init.c
+ */
+void		data_init(t_data *data);
+
 /*
  * 	ft_constructor.c
  */
@@ -66,6 +72,6 @@ int			in_shadow(t_objects *ob, t_ray *ray, t_rec rec, double light_len);
 /*
  * parse.c
  */
-void	parse_mini_rt(char *filename, t_data *data);
+void		parse_mini_rt(char *filename, t_data *data);
 
 #endif
