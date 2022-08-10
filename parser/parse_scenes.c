@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "parser.h"
-#include "stdlib.h"
-#include "stdio.h"
 
 /*
  * ambient lighting ratio in range [0.0,1.0]: 0.2

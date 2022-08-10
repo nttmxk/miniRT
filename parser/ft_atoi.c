@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "parser.h"
 
 static void	if_end_exit(char c, char end)
