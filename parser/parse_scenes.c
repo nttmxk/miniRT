@@ -48,7 +48,7 @@ void	parse_camera(char **splitted, t_scene *scene)
 	fov_check(camera->fov);
 	if (scene->mask & 2)
 		error_msg_exit("camera already defined\n");
-	scene->mask = 2;
+	scene->mask += 2;
 }
 
 /*
@@ -67,5 +67,5 @@ void	parse_light(char **splitted, t_scene *scene)
 	put_color(splitted[3], &light->color);
 	if (scene->mask & 4)
 		error_msg_exit("light already defined\n");
-	scene->mask = 4;
+	scene->mask += 4;
 }

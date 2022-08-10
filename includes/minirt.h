@@ -23,8 +23,6 @@
 # define TMAX	99999
 # define EPSILON 1e-6
 
-void		draw(t_data *data);
-
 /*
  * init.c
  */
@@ -48,6 +46,24 @@ t_point		ray_at(t_ray *ray, double t);
 int			get_color(t_color c);
 int			color_obj(t_scene *scene, t_objects *ob);
 void		check_hit(t_objects *ob, t_ray *ray, t_rec *rec);
+
+/*
+ * 	controller.c
+ */
+void		camera_translate_keys(int key, t_data *data);
+void		camera_rotate_keys(int key, t_data *data);
+void		light_translate_keys(int key, t_data *data);
+void		plane_keys(int key, t_data *data);
+void		cylinder_keys(int key, t_data *data);
+
+/*
+ * 	traverse.c
+ */
+void		traverse_sp_translate(t_objects *objects, int xyz, double change);
+void		traverse_pl_rotate(t_objects *objects, int xyz, double change);
+void		traverse_pl_translate(t_objects *objects, int xyz, double change);
+void		traverse_cy_rotate(t_objects *objects, int xyz, double change);
+void		traverse_cy_translate(t_objects *objects, int xyz, double change);
 
 /*
  * 	ft_sphere.c
@@ -76,10 +92,5 @@ int			in_shadow(t_objects *ob, t_ray *ray, t_rec rec, double light_len);
  * parse.c
  */
 void		parse_mini_rt(char *filename, t_data *data);
-
-/*
- * controller.c
- */
-int			press_key(int key, t_data *data);
 
 #endif
