@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minirt.h"
-#include "includes/ft_math.h"
+#include "minirt.h"
+#include "ft_math.h"
 #include "mlx.h"
 
 static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

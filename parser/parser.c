@@ -17,8 +17,6 @@
 #include "minirt.h"
 #include "parser.h"
 
-//have to discuss how to handle with no camera, no light, no ambient
-
 static int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	index;

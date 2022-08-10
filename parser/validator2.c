@@ -37,7 +37,6 @@ void	fov_check(double fov)
 	}
 }
 
-/* normalvector인지 확인해야함 */
 void	normalized_check(t_vec normal)
 {
 	if (!in_range(normal.x, -1.0, 1.0)
