@@ -60,8 +60,8 @@ static int	press_key(int key, t_data *data)
 	camera_rotate_keys(key, data);
 	camera_translate_keys(key, data);
 	light_translate_keys(key, data);
-	objs_rotate_keys(key, data);
-	objs_translate_keys(key, data);
+	plane_keys(key, data);
+	cylinder_keys(key, data);
 	draw(data);
 	return (0);
 }
